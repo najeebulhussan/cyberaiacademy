@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-slate-800 font-sans antialiased;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E2E8F0;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #007A87;
+}
+
+/* Keyframe Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 122, 135, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 122, 135, 0.3);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float {
+  animation: float 4s infinite ease-in-out;
+}
+
+/* Glassmorphism Classes for Pure White Theme */
+.glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 45, 98, 0.1);
+}
+
+.glass-nav {
+  background: #002D62; /* Cisco Primary Navy Header Bar */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 45, 98, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 5px 0 rgba(0, 45, 98, 0.05);
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 122, 135, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -10px rgba(0, 122, 135, 0.15);
+}
+
+/* Premium Buttons */
+.cyber-btn {
+  @apply relative overflow-hidden font-semibold transition-all duration-300 active:scale-95 text-white shadow-sm;
+  background: linear-gradient(135deg, #007A87 0%, #002D62 100%);
+}
+
+.cyber-btn:hover {
+  @apply scale-[1.02] shadow-glow;
+  filter: brightness(1.08);
+}
+
+.cyber-btn-outline {
+  @apply font-semibold border transition-all duration-300 active:scale-95 cursor-pointer;
+  border-color: rgba(0, 122, 135, 0.4);
+  color: #007A87;
+  background: rgba(0, 122, 135, 0.01);
+}
+
+.cyber-btn-outline:hover {
+  @apply border-accentCyan bg-accentCyan/5 shadow-glow;
+}
