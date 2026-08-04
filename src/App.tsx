@@ -6,6 +6,7 @@ import MentorView from '@/components/MentorView';
 import BadgesView from '@/components/BadgesView';
 import AdminView from '@/components/AdminView';
 import AdmissionModal from '@/components/AdmissionModal';
+import WhatsAppWidget from '@/components/WhatsAppWidget';
 import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone } from 'lucide-react';
 import { useAcademyStore } from '@/services/academyState';
 
@@ -294,6 +295,9 @@ export default function App() {
 
       {/* ADMISSION INQUIRY MODAL */}
       <AdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
+
+      {/* FLOATING WHATSAPP CHAT SUPPORT */}
+      <WhatsAppWidget />
 
     </div>
   );
