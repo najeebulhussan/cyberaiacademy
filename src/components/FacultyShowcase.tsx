@@ -1,14 +1,14 @@
 import React from 'react';
-import { Award, Star, CheckCircle, ShieldCheck, BookOpen, ExternalLink } from 'lucide-react';
+import { Award, Star, CheckCircle, ShieldCheck, BookOpen, UserCheck, Shield } from 'lucide-react';
 
 interface FacultyMember {
   id: string;
   name: string;
+  initials: string;
   role: string;
   certification: string;
   experience: string;
   rating: number;
-  image: string;
   specialties: string[];
 }
 
@@ -17,31 +17,31 @@ export default function FacultyShowcase() {
     {
       id: '1',
       name: 'Engr. Najeeb Ul Hussan',
+      initials: 'NH',
       role: 'Lead Instructor & CCIE Network Architect',
       certification: 'Cisco Certified Internetwork Expert (CCIE) & CyberOps',
       experience: '15+ Years Industry & Academic Experience',
       rating: 4.9,
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
       specialties: ['Cisco CCNA / CCNP Enterprise', 'BGP & OSPF Routing', 'ASA Security & VPNs']
     },
     {
       id: '2',
       name: 'Engr. Farhan Shah',
+      initials: 'FS',
       role: 'Head of Cybersecurity & SOC Operations',
       certification: 'Certified Ethical Hacker (CEH) & Cisco CyberOps',
       experience: '12+ Years Enterprise Threat Defense',
       rating: 4.9,
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
       specialties: ['SIEM & Splunk Analysis', 'Penetration Testing', 'Incident Response']
     },
     {
       id: '3',
       name: 'Ms. Ayesha Malik',
+      initials: 'AM',
       role: 'Senior AI & Python Automation Specialist',
       certification: 'Python Certified Associate & MLOps Lead',
       experience: '8+ Years AI Data Engineering',
       rating: 4.8,
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80',
       specialties: ['Python Data Science', 'Deep Learning Models', 'Ansible Network Automation']
     }
   ];
@@ -71,13 +71,11 @@ export default function FacultyShowcase() {
           >
             <div className="space-y-4">
               
-              {/* Avatar + Rating */}
+              {/* Initials Badge + Rating */}
               <div className="flex items-center gap-4">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-16 h-16 rounded-2xl object-cover border-2 border-[#007A87]/30 shadow-md group-hover:scale-105 transition-transform"
-                />
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#002D62] to-[#007A87] text-white flex items-center justify-center font-display font-extrabold text-base shadow-md group-hover:scale-105 transition-transform shrink-0 border border-white/40">
+                  {member.initials}
+                </div>
                 <div>
                   <h3 className="text-base font-bold text-slate-900 group-hover:text-[#007A87] transition-colors">{member.name}</h3>
                   <span className="text-xs font-semibold text-[#005073] block">{member.role}</span>
