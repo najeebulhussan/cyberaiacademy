@@ -127,7 +127,7 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
       </section>
 
       {/* ═══════════ ANIMATED STATS BANNER ═══════════ */}
-      <section ref={reveal} className="reveal grid grid-cols-2 md:grid-cols-4 gap-6 py-8 px-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm text-center">
+      <section ref={reveal} className="reveal nhiit-glass-card grid grid-cols-2 md:grid-cols-4 gap-6 py-8 px-8 rounded-3xl text-center">
         <div className="space-y-1" ref={yearsCounter.ref}>
           <h3 className="text-2xl sm:text-3xl font-display font-bold text-[#002D62] tracking-tight">{yearsCounter.count}+ Years</h3>
           <p className="text-[10px] font-sans font-semibold text-slate-500 uppercase tracking-wider stat-underline revealed">Excellence in Multan</p>
@@ -166,10 +166,10 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
             <div 
               key={i}
               onClick={() => handleSubjectClick(subject.cat)}
-              className="card-hover flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-200 cursor-pointer shadow-sm group animate-slide-up"
+              className="nhiit-glass-card flex items-center gap-4 p-4 rounded-2xl cursor-pointer group animate-slide-up"
               style={{ animationDelay: `${i * 0.06}s` }}
             >
-              <div className={`p-2.5 rounded-xl bg-gradient-to-br ${subject.color} text-white group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
+              <div className={`p-2.5 rounded-xl bg-gradient-to-br ${subject.color} text-white group-hover:scale-110 transition-transform duration-300 shadow-md`}>
                 {subject.icon}
               </div>
               <span className="font-sans font-bold text-slate-800 text-sm group-hover:text-[#007A87] transition-colors">{subject.label}</span>
@@ -203,11 +203,11 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
             <div 
               key={path.id} 
               onClick={() => setSelectedPathway(path)}
-              className="card-hover group bg-white rounded-2xl overflow-hidden cursor-pointer border border-slate-200/80 shadow-sm flex flex-col justify-between animate-slide-up"
+              className="nhiit-glass-card group rounded-3xl overflow-hidden cursor-pointer flex flex-col justify-between animate-slide-up"
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
               <div>
-                <div className="flex items-center gap-2 px-6 py-4 bg-slate-50 border-b border-slate-100">
+                <div className="flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-50/60 to-white/40 border-b border-slate-100/80">
                   <div className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: path.color }} />
                   <span className="text-xs font-mono font-bold tracking-wider" style={{ color: path.color }}>
                     {path.career.toUpperCase()}
@@ -222,13 +222,13 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
                   </p>
                 </div>
               </div>
-              <div className="px-6 pb-6 pt-4 flex items-center justify-between border-t border-slate-100">
+              <div className="px-6 pb-6 pt-4 flex items-center justify-between border-t border-slate-100/80">
                 <div>
                   <span className="text-[10px] block font-mono text-slate-500 uppercase tracking-wider">Avg Salary</span>
                   <span className="text-md font-bold text-accentGreen font-mono">{path.salary}/yr</span>
                 </div>
                 <div 
-                  className="px-4 py-1.5 rounded-lg border text-xs font-mono transition-all group-hover:scale-105 group-hover:shadow-sm"
+                  className="px-4 py-1.5 rounded-xl border text-xs font-mono transition-all group-hover:scale-105 group-hover:shadow-sm"
                   style={{ borderColor: path.color, color: path.color }}
                 >
                   Configure Plan →
@@ -242,7 +242,7 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
       {/* ═══════════ WHY NETWORK HOME ═══════════ */}
       <section ref={reveal} className="reveal space-y-8">
         <div className="text-center space-y-2 max-w-2xl mx-auto">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#005073]/10 text-[#005073] uppercase tracking-wider inline-block">
+          <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold nhiit-glass-pill text-[#005073] uppercase tracking-wider inline-block shadow-sm">
             South Punjab Premier IT Institute
           </span>
           <h2 className="text-3xl font-display font-bold text-slate-900">Why Network Home Institute?</h2>
@@ -259,7 +259,7 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
           ].map((item, i) => (
             <div 
               key={i}
-              className="card-hover p-6 rounded-2xl bg-white border border-slate-200/60 shadow-sm space-y-4 animate-slide-up"
+              className="nhiit-glass-card p-6 rounded-3xl space-y-4 animate-slide-up"
               style={{ animationDelay: `${i * 0.12}s` }}
             >
               <div className={`w-12 h-12 rounded-xl ${item.bgColor} flex items-center justify-center text-[${item.color === 'bg-[#005073]' ? '#005073' : item.color === 'bg-[#007A87]' ? '#007A87' : '#1E824C'}]`}>
@@ -308,7 +308,7 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
               <div 
                 key={course.id}
                 onClick={() => setSelectedCourse(course)}
-                className="card-hover group bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm flex flex-col justify-between cursor-pointer animate-slide-up"
+                className="nhiit-glass-card group rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-between animate-slide-up"
                 style={{ animationDelay: `${idx * 0.06}s` }}
               >
                 <div>

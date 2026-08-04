@@ -70,22 +70,24 @@ export default function App() {
         </div>
       </div>
 
-      {/* 2. OFFICIAL NETWORK HOME HEADER NAVBAR */}
-      <header className="sticky top-0 z-40 bg-white border-b border-slate-200 w-full shadow-sm">
+      {/* 2. OFFICIAL NETWORK HOME HEADER NAVBAR (GLOSSY GLASS) */}
+      <header className="sticky top-0 z-40 glass-nav w-full transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           
-          {/* Brand Logo */}
+          {/* Brand Logo with 3D Glass Badge */}
           <div 
             onClick={() => handleSetTab('explore')}
-            className="flex items-center gap-2.5 cursor-pointer shrink-0"
+            className="flex items-center gap-3 cursor-pointer shrink-0 group"
           >
-            <img 
-              src="/logo.png" 
-              alt="NHIIT Logo" 
-              className="w-10 h-10 object-contain drop-shadow-md"
-            />
+            <div className="nhiit-logo-badge p-1 rounded-xl bg-gradient-to-br from-white/80 via-blue-50/50 to-white/30 backdrop-blur-md border border-white/80 shadow-md">
+              <img 
+                src="/logo.png" 
+                alt="NHIIT Logo" 
+                className="w-10 h-10 object-contain drop-shadow-md group-hover:scale-105 transition-transform"
+              />
+            </div>
             <div className="flex flex-col text-slate-900 leading-none">
-              <span className="font-sans font-extrabold text-sm tracking-wide text-[#002D62]">Network Home</span>
+              <span className="font-sans font-extrabold text-sm tracking-wide text-[#002D62] group-hover:text-[#007A87] transition-colors">Network Home</span>
               <span className="font-sans font-semibold text-[10px] text-[#007A87] tracking-tight">Institute of IT • Multan</span>
             </div>
           </div>
