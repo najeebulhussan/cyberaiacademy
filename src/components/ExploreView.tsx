@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Course, useAcademyStore } from '@/services/academyState';
-import NetworkSimulator from '@/components/NetworkSimulator';
-import CyberArcade from '@/components/CyberArcade';
 import { Shield, Cpu, Award, Clock, ArrowRight, X, BookOpen, Star, Network, Brain, Code, Monitor, Laptop, User, Leaf, Cloud } from 'lucide-react';
 
 interface ExploreViewProps {
@@ -133,12 +131,6 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
           <p className="text-[10px] font-sans font-semibold text-slate-500 uppercase tracking-wider">Cisco Academy Partner</p>
         </div>
       </section>
-
-      {/* INTERACTIVE HARDWARE & LAB TOPOLOGY SIMULATOR */}
-      <NetworkSimulator />
-
-      {/* GAMIFIED CYBER ARCADE & CHALLENGE ARENA */}
-      <CyberArcade />
 
       {/* SUBJECT AREAS SECTION */}
       <section className="space-y-8 py-4">
