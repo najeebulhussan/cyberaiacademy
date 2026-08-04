@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Course, useAcademyStore } from '@/services/academyState';
 import { useScrollReveal, useAnimatedCounter } from '@/hooks/useScrollReveal';
+import CampusLabsShowcase from '@/components/CampusLabsShowcase';
+import FacultyShowcase from '@/components/FacultyShowcase';
 import { Shield, Cpu, Award, Clock, ArrowRight, X, BookOpen, Star, Network, Brain, Code, Monitor, Laptop, User, Leaf, Cloud } from 'lucide-react';
 
 interface ExploreViewProps {
@@ -190,6 +192,11 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
         </div>
       </section>
 
+      {/* ═══════════ PHYSICAL MULTAN CAMPUS LABS SHOWCASE ═══════════ */}
+      <section ref={reveal} className="reveal">
+        <CampusLabsShowcase />
+      </section>
+
       {/* ═══════════ CAREER PATHWAYS ═══════════ */}
       <section ref={reveal} className="reveal" id="pathways-section">
         <div className="space-y-2 mb-8">
@@ -270,6 +277,11 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ═══════════ CERTIFIED EXPERT FACULTY SHOWCASE ═══════════ */}
+      <section ref={reveal} className="reveal">
+        <FacultyShowcase />
       </section>
 
       {/* ═══════════ FEATURED COURSES ═══════════ */}

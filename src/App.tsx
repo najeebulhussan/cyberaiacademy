@@ -8,7 +8,8 @@ import AdminView from '@/components/AdminView';
 import AdmissionModal from '@/components/AdmissionModal';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
 import AdminAuthModal from '@/components/AdminAuthModal';
-import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone, Lock } from 'lucide-react';
+import CertificateVerifierModal from '@/components/CertificateVerifierModal';
+import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone, Lock, ShieldCheck } from 'lucide-react';
 import { useAcademyStore } from '@/services/academyState';
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
   const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
   const [isAdminAuthOpen, setIsAdminAuthOpen] = useState(false);
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+  const [isVerifierOpen, setIsVerifierOpen] = useState(false);
 
   // Sync tab with URL hash
   useEffect(() => {
@@ -250,18 +252,29 @@ export default function App() {
           </div>
           <p>© 2026 Network Home Institute of Information Technology. All Rights Reserved.</p>
           
-          {/* Discrete Staff Admin Portal Lock Link */}
-          <button 
-            onClick={() => handleSetTab('admin')} 
-            className="text-slate-400 hover:text-slate-600 flex items-center justify-center gap-1 mx-auto text-[10px] pt-2 cursor-pointer transition-colors"
-          >
-            <Lock className="w-3 h-3" /> Staff Portal
-          </button>
+          <div className="flex items-center justify-center gap-4 text-[10px] pt-2">
+            <button 
+              onClick={() => setIsVerifierOpen(true)} 
+              className="text-[#007A87] hover:text-[#005073] font-semibold flex items-center gap-1 cursor-pointer transition-colors"
+            >
+              <ShieldCheck className="w-3.5 h-3.5" /> Verify Student Certificate
+            </button>
+            <span className="text-slate-300">•</span>
+            <button 
+              onClick={() => handleSetTab('admin')} 
+              className="text-slate-400 hover:text-slate-600 flex items-center gap-1 cursor-pointer transition-colors"
+            >
+              <Lock className="w-3 h-3" /> Staff Portal
+            </button>
+          </div>
         </div>
       </footer>
 
       {/* ADMISSION INQUIRY MODAL */}
       <AdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
+
+      {/* PUBLIC CERTIFICATE VERIFIER MODAL */}
+      <CertificateVerifierModal isOpen={isVerifierOpen} onClose={() => setIsVerifierOpen(false)} />
 
       {/* ADMIN AUTHENTICATION LOCK MODAL */}
       <AdminAuthModal 
