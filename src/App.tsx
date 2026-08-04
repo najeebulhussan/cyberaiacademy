@@ -7,15 +7,17 @@ import BadgesView from '@/components/BadgesView';
 import AdminView from '@/components/AdminView';
 import AdmissionModal from '@/components/AdmissionModal';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
-import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone } from 'lucide-react';
+import AdminAuthModal from '@/components/AdminAuthModal';
+import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone, Lock } from 'lucide-react';
 import { useAcademyStore } from '@/services/academyState';
 
 export default function App() {
   const { profile } = useAcademyStore();
   const [activeTab, setActiveTab] = useState<'explore' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('explore');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showDowntime, setShowDowntime] = useState(true);
   const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
+  const [isAdminAuthOpen, setIsAdminAuthOpen] = useState(false);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
 
   // Sync tab with URL hash
   useEffect(() => {
@@ -33,6 +35,10 @@ export default function App() {
   }, []);
 
   const handleSetTab = (tab: 'explore' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => {
+    if (tab === 'admin' && !isAdminAuthenticated) {
+      setIsAdminAuthOpen(true);
+      return;
+    }
     setActiveTab(tab);
     window.location.hash = tab;
     setMobileMenuOpen(false);
@@ -134,16 +140,6 @@ export default function App() {
             >
               <Shield className="w-3.5 h-3.5 text-accentGreen" /> Credentials
             </button>
-            <button 
-              onClick={() => handleSetTab('admin')}
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
-                activeTab === 'admin' 
-                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
-                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
-              }`}
-            >
-              Admin
-            </button>
           </nav>
 
           {/* Right Action Buttons */}
@@ -216,17 +212,7 @@ export default function App() {
                 activeTab === 'badges' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
-              <Shield className="w-4 h-4 text-accentGreen" /> Credentials Locker
             </button>
-            <button 
-              onClick={() => handleSetTab('admin')}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
-                activeTab === 'admin' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
-              }`}
-            >
-              Admin Console
-            </button>
-            
             <div className="border-t border-slate-200 pt-3 flex flex-col gap-2">
               <button 
                 onClick={() => {
@@ -249,7 +235,7 @@ export default function App() {
         {activeTab === 'player' && <LmsView />}
         {activeTab === 'tutor' && <MentorView />}
         {activeTab === 'badges' && <BadgesView />}
-        {activeTab === 'admin' && <AdminView />}
+        {activeTab === 'admin' && (isAdminAuthenticated ? <AdminView /> : <ExploreView onNavigateToTab={handleSetTab} />)}
       </main>
 
       {/* FOOTER AREA */}
@@ -259,11 +245,31 @@ export default function App() {
             <Shield className="w-4 h-4 text-accentCyan" /> Network Home Institute of Information Technology
           </div>
           <p>© 2026 Network Home Institute of Information Technology. All Rights Reserved.</p>
+          
+          {/* Discrete Staff Admin Portal Lock Link */}
+          <button 
+            onClick={() => handleSetTab('admin')} 
+            className="text-slate-400 hover:text-slate-600 flex items-center justify-center gap-1 mx-auto text-[10px] pt-2 cursor-pointer transition-colors"
+          >
+            <Lock className="w-3 h-3" /> Staff Portal
+          </button>
         </div>
       </footer>
 
       {/* ADMISSION INQUIRY MODAL */}
       <AdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
+
+      {/* ADMIN AUTHENTICATION LOCK MODAL */}
+      <AdminAuthModal 
+        isOpen={isAdminAuthOpen} 
+        onClose={() => setIsAdminAuthOpen(false)} 
+        onSuccess={() => {
+          setIsAdminAuthOpen(false);
+          setIsAdminAuthenticated(true);
+          setActiveTab('admin');
+          window.location.hash = 'admin';
+        }} 
+      />
 
       {/* FLOATING WHATSAPP CHAT SUPPORT */}
       <WhatsAppWidget />
