@@ -64,44 +64,26 @@ export default function App() {
         </div>
       </div>
 
-      {/* 2. OFFICIAL CISCO NETACAD HEADER NAVBAR */}
-      <header className="sticky top-0 z-40 bg-white border-b border-slate-250 w-full">
+      {/* 2. OFFICIAL NETWORK HOME HEADER NAVBAR */}
+      <header className="sticky top-0 z-40 bg-white border-b border-slate-200 w-full shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           
-          {/* Brand Logo: Cisco style */}
+          {/* Brand Logo */}
           <div 
             onClick={() => handleSetTab('explore')}
-            className="flex items-center gap-2 cursor-pointer shrink-0"
+            className="flex items-center gap-2.5 cursor-pointer shrink-0"
           >
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#002D62] to-[#007A87] text-white flex items-center justify-center font-display font-extrabold text-sm shadow-md">
+              NH
+            </div>
             <div className="flex flex-col text-slate-900 leading-none">
-              <span className="font-sans font-extrabold text-sm tracking-wider text-[#005073]">Network Home</span>
-              <span className="font-sans font-bold text-xs text-[#007A87]">Institute of Information Technology</span>
+              <span className="font-sans font-extrabold text-sm tracking-wide text-[#002D62]">Network Home</span>
+              <span className="font-sans font-semibold text-[10px] text-[#007A87] tracking-tight">Institute of IT • Multan</span>
             </div>
           </div>
 
-          {/* Explore dropdown button */}
-          <button 
-            onClick={() => handleSetTab('explore')}
-            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded border border-slate-300 hover:border-slate-400 text-xs font-semibold text-slate-700 bg-slate-50 transition-all"
-          >
-            <Grid className="w-3.5 h-3.5" /> Explore
-          </button>
-
-          {/* Center Search Input Box */}
-          <div className="hidden md:flex items-center flex-1 max-w-md relative">
-            <input 
-              type="text"
-              placeholder="Search for courses, articles and resources"
-              className="w-full bg-slate-50 border border-slate-300 rounded px-3 py-1.5 pl-8 text-xs focus:outline-none focus:border-accentCyan focus:bg-white text-slate-700"
-            />
-            <Search className="w-3.5 h-3.5 text-slate-450 absolute left-2.5" />
-            <div className="absolute right-2.5 flex items-center gap-0.5 border-l border-slate-300 pl-2 text-[10px] font-semibold text-slate-500 cursor-pointer hover:text-slate-800">
-              Learner <ChevronDown className="w-3 h-3" />
-            </div>
-          </div>
-
-          {/* Center Navigation Links with Modern Styling */}
-          <nav className="hidden xl:flex items-center gap-1">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-1">
             <button 
               onClick={() => handleSetTab('explore')}
               className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
@@ -130,7 +112,7 @@ export default function App() {
                   : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
-              <Cpu className="w-3.5 h-3.5" /> LMS Player
+              <Cpu className="w-3.5 h-3.5 text-[#007A87]" /> LMS Player
             </button>
             <button 
               onClick={() => handleSetTab('tutor')}
@@ -164,103 +146,96 @@ export default function App() {
             </button>
           </nav>
 
-          {/* Right Action icons & buttons */}
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
+          {/* Right Action Buttons */}
+          <div className="hidden sm:flex items-center gap-2.5 shrink-0">
             <button 
               onClick={() => setIsAdmissionOpen(true)}
-              className="px-3.5 py-1.5 rounded-lg bg-[#007A87] hover:bg-[#005073] text-white text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-1"
+              className="px-3.5 py-2 rounded-lg bg-[#007A87] hover:bg-[#005073] text-white text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-1"
             >
               Inquire Admission
             </button>
-            
-            <div className="w-px bg-slate-200 h-4" />
-            
             <button 
               onClick={() => handleSetTab('learning')}
-              className="px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-700 transition-all cursor-pointer bg-white"
+              className="px-3 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-700 transition-all cursor-pointer bg-white"
             >
               Student Portal
             </button>
           </div>
 
-          {/* Mobile menu toggle */}
-          <div className="xl:hidden flex items-center gap-2">
-            {/* Minimal search trigger */}
-            <button onClick={() => handleSetTab('explore')} className="p-1.5 text-slate-500 hover:text-slate-800 md:hidden">
-              <Search className="w-5 h-5" />
-            </button>
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden flex items-center gap-2">
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-slate-600 hover:text-slate-950 p-1"
+              className="text-slate-700 hover:text-slate-950 p-2 rounded-lg bg-slate-100"
+              aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
         </div>
 
-        {/* Mobile Dropdown Panel */}
+        {/* Mobile Dropdown Drawer */}
         {mobileMenuOpen && (
-          <div className="xl:hidden border-t border-slate-200 bg-white p-4 space-y-2.5 shadow-lg">
+          <div className="lg:hidden border-t border-slate-200 bg-white p-4 space-y-2 shadow-xl animate-fade-in">
             <button 
               onClick={() => handleSetTab('explore')}
-              className={`w-full text-left px-4 py-2 rounded text-xs font-semibold ${
-                activeTab === 'explore' ? 'bg-accentCyan/10 text-accentCyan font-bold' : 'text-slate-650'
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'explore' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
-              Explore Catalog
+              <BookOpen className="w-4 h-4" /> Programs Catalog
             </button>
             <button 
               onClick={() => handleSetTab('learning')}
-              className={`w-full text-left px-4 py-2 rounded text-xs font-semibold ${
-                activeTab === 'learning' ? 'bg-accentCyan/10 text-accentCyan font-bold' : 'text-slate-650'
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'learning' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
-              My Learning
+              <User className="w-4 h-4" /> Student Dashboard
             </button>
             <button 
               onClick={() => handleSetTab('player')}
-              className={`w-full text-left px-4 py-2 rounded text-xs font-semibold ${
-                activeTab === 'player' ? 'bg-accentCyan/10 text-accentCyan font-bold' : 'text-slate-650'
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'player' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
-              Course Player
+              <Cpu className="w-4 h-4 text-[#007A87]" /> LMS Code Player
             </button>
             <button 
               onClick={() => handleSetTab('tutor')}
-              className={`w-full text-left px-4 py-2 rounded text-xs font-semibold ${
-                activeTab === 'tutor' ? 'bg-accentCyan/10 text-accentCyan font-bold' : 'text-slate-650'
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'tutor' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
-              AI Tutor
+              <HelpCircle className="w-4 h-4 text-accentPurple" /> AI Tutor
             </button>
             <button 
               onClick={() => handleSetTab('badges')}
-              className={`w-full text-left px-4 py-2 rounded text-xs font-semibold ${
-                activeTab === 'badges' ? 'bg-accentCyan/10 text-accentCyan font-bold' : 'text-slate-650'
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'badges' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
-              Credentials
+              <Shield className="w-4 h-4 text-accentGreen" /> Credentials Locker
             </button>
             <button 
               onClick={() => handleSetTab('admin')}
-              className={`w-full text-left px-4 py-2 rounded text-xs font-semibold ${
-                activeTab === 'admin' ? 'bg-accentCyan/10 text-accentCyan font-bold' : 'text-slate-650'
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'admin' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
-              Admin Panel
+              Admin Console
             </button>
-            <div className="border-t border-slate-200 pt-2 flex items-center justify-between px-4 text-xs">
-              <a 
-                href="https://netacad.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-slate-500 hover:text-slate-900 flex items-center gap-1"
+            
+            <div className="border-t border-slate-200 pt-3 flex flex-col gap-2">
+              <button 
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setIsAdmissionOpen(true);
+                }}
+                className="w-full py-2.5 rounded-lg bg-[#007A87] text-white text-xs font-bold text-center shadow-sm"
               >
-                NetAcad <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-              <button className="px-4 py-1.5 rounded border border-slate-800 text-slate-800 text-xs font-semibold bg-white">
-                Sign In
+                🎓 Apply For Admission (Multan)
               </button>
             </div>
           </div>
