@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ExploreView from '@/components/ExploreView';
+import CourseCatalogView from '@/components/CourseCatalogView';
 import DashboardView from '@/components/DashboardView';
 import LmsView from '@/components/LmsView';
 import MentorView from '@/components/MentorView';
@@ -9,12 +10,12 @@ import AdmissionModal from '@/components/AdmissionModal';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
 import AdminAuthModal from '@/components/AdminAuthModal';
 import CertificateVerifierModal from '@/components/CertificateVerifierModal';
-import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone, Lock, ShieldCheck } from 'lucide-react';
+import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone, Lock, ShieldCheck, Layers } from 'lucide-react';
 import { useAcademyStore } from '@/services/academyState';
 
 export default function App() {
   const { profile } = useAcademyStore();
-  const [activeTab, setActiveTab] = useState<'explore' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('explore');
+  const [activeTab, setActiveTab] = useState<'explore' | 'programs' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('explore');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
   const [isAdminAuthOpen, setIsAdminAuthOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['explore', 'learning', 'player', 'tutor', 'badges', 'admin'].includes(hash)) {
+      if (['explore', 'programs', 'learning', 'player', 'tutor', 'badges', 'admin'].includes(hash)) {
         setActiveTab(hash as any);
       }
     };
@@ -36,7 +37,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleSetTab = (tab: 'explore' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => {
+  const handleSetTab = (tab: 'explore' | 'programs' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => {
     if (tab === 'admin' && !isAdminAuthenticated) {
       setIsAdminAuthOpen(true);
       return;
@@ -104,7 +105,17 @@ export default function App() {
                   : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
-              <BookOpen className="w-3.5 h-3.5" /> Programs
+              <BookOpen className="w-3.5 h-3.5" /> Home
+            </button>
+            <button 
+              onClick={() => handleSetTab('programs')}
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+                activeTab === 'programs' 
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5 text-[#007A87]" /> Courses & Programs
             </button>
             <button 
               onClick={() => handleSetTab('learning')}
@@ -237,6 +248,7 @@ export default function App() {
       {/* MAIN CONTENT WORKSPACE VIEWPORT */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         {activeTab === 'explore' && <ExploreView onNavigateToTab={handleSetTab} />}
+        {activeTab === 'programs' && <CourseCatalogView onNavigateToTab={handleSetTab} />}
         {activeTab === 'learning' && <DashboardView />}
         {activeTab === 'player' && <LmsView />}
         {activeTab === 'tutor' && <MentorView />}
