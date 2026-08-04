@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ExploreView from '@/components/ExploreView';
 import CourseCatalogView from '@/components/CourseCatalogView';
+import AboutUsView from '@/components/AboutUsView';
+import AdmissionsView from '@/components/AdmissionsView';
+import ContactView from '@/components/ContactView';
 import DashboardView from '@/components/DashboardView';
 import LmsView from '@/components/LmsView';
 import MentorView from '@/components/MentorView';
@@ -10,12 +13,12 @@ import AdmissionModal from '@/components/AdmissionModal';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
 import AdminAuthModal from '@/components/AdminAuthModal';
 import CertificateVerifierModal from '@/components/CertificateVerifierModal';
-import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone, Lock, ShieldCheck, Layers } from 'lucide-react';
+import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone, Lock, ShieldCheck, Layers, Info, Calendar, Mail } from 'lucide-react';
 import { useAcademyStore } from '@/services/academyState';
 
 export default function App() {
   const { profile } = useAcademyStore();
-  const [activeTab, setActiveTab] = useState<'explore' | 'programs' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('explore');
+  const [activeTab, setActiveTab] = useState<'explore' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('explore');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
   const [isAdminAuthOpen, setIsAdminAuthOpen] = useState(false);
@@ -26,7 +29,7 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['explore', 'programs', 'learning', 'player', 'tutor', 'badges', 'admin'].includes(hash)) {
+      if (['explore', 'programs', 'about', 'admissions', 'contact', 'learning', 'player', 'tutor', 'badges', 'admin'].includes(hash)) {
         setActiveTab(hash as any);
       }
     };
@@ -37,7 +40,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleSetTab = (tab: 'explore' | 'programs' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => {
+  const handleSetTab = (tab: 'explore' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => {
     if (tab === 'admin' && !isAdminAuthenticated) {
       setIsAdminAuthOpen(true);
       return;
@@ -99,7 +102,7 @@ export default function App() {
           <nav className="hidden lg:flex items-center gap-1">
             <button 
               onClick={() => handleSetTab('explore')}
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'explore' 
                   ? 'text-[#005073] bg-[#005073]/10 font-bold' 
                   : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
@@ -109,7 +112,7 @@ export default function App() {
             </button>
             <button 
               onClick={() => handleSetTab('programs')}
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'programs' 
                   ? 'text-[#005073] bg-[#005073]/10 font-bold' 
                   : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
@@ -118,44 +121,44 @@ export default function App() {
               <Layers className="w-3.5 h-3.5 text-[#007A87]" /> Courses & Programs
             </button>
             <button 
-              onClick={() => handleSetTab('learning')}
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
-                activeTab === 'learning' 
+              onClick={() => handleSetTab('admissions')}
+              className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+                activeTab === 'admissions' 
                   ? 'text-[#005073] bg-[#005073]/10 font-bold' 
                   : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
-              <User className="w-3.5 h-3.5" /> Dashboard
+              <Calendar className="w-3.5 h-3.5 text-accentGreen" /> Admissions
+            </button>
+            <button 
+              onClick={() => handleSetTab('about')}
+              className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+                activeTab === 'about' 
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
+              }`}
+            >
+              <Info className="w-3.5 h-3.5 text-[#002D62]" /> About Us
+            </button>
+            <button 
+              onClick={() => handleSetTab('contact')}
+              className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+                activeTab === 'contact' 
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
+              }`}
+            >
+              <Mail className="w-3.5 h-3.5 text-amber-600" /> Contact
             </button>
             <button 
               onClick={() => handleSetTab('player')}
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'player' 
                   ? 'text-[#005073] bg-[#005073]/10 font-bold' 
                   : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
               <Cpu className="w-3.5 h-3.5 text-[#007A87]" /> LMS Player
-            </button>
-            <button 
-              onClick={() => handleSetTab('tutor')}
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
-                activeTab === 'tutor' 
-                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
-                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
-              }`}
-            >
-              <HelpCircle className="w-3.5 h-3.5 text-accentPurple" /> AI Tutor
-            </button>
-            <button 
-              onClick={() => handleSetTab('badges')}
-              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
-                activeTab === 'badges' 
-                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
-                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
-              }`}
-            >
-              <Shield className="w-3.5 h-3.5 text-accentGreen" /> Credentials
             </button>
           </nav>
 
@@ -249,6 +252,9 @@ export default function App() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         {activeTab === 'explore' && <ExploreView onNavigateToTab={handleSetTab} />}
         {activeTab === 'programs' && <CourseCatalogView onNavigateToTab={handleSetTab} />}
+        {activeTab === 'about' && <AboutUsView />}
+        {activeTab === 'admissions' && <AdmissionsView />}
+        {activeTab === 'contact' && <ContactView />}
         {activeTab === 'learning' && <DashboardView />}
         {activeTab === 'player' && <LmsView />}
         {activeTab === 'tutor' && <MentorView />}
