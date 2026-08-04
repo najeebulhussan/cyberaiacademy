@@ -100,92 +100,86 @@ export default function App() {
             </div>
           </div>
 
-          {/* Navigation links & tabs */}
-          <nav className="hidden xl:flex items-center gap-0.5">
+          {/* Center Navigation Links with Modern Styling */}
+          <nav className="hidden xl:flex items-center gap-1">
             <button 
               onClick={() => handleSetTab('explore')}
-              className={`px-3 py-2 text-xs font-semibold rounded transition-all ${
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'explore' 
-                  ? 'text-accentCyan border-b-2 border-accentCyan font-bold' 
-                  : 'text-slate-600 hover:text-slate-950'
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
-              Explore Catalog
+              <BookOpen className="w-3.5 h-3.5" /> Programs
             </button>
             <button 
               onClick={() => handleSetTab('learning')}
-              className={`px-3 py-2 text-xs font-semibold rounded transition-all ${
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'learning' 
-                  ? 'text-accentCyan border-b-2 border-accentCyan font-bold' 
-                  : 'text-slate-600 hover:text-slate-950'
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
-              My Learning
+              <User className="w-3.5 h-3.5" /> Dashboard
             </button>
             <button 
               onClick={() => handleSetTab('player')}
-              className={`px-3 py-2 text-xs font-semibold rounded transition-all ${
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'player' 
-                  ? 'text-accentCyan border-b-2 border-accentCyan font-bold' 
-                  : 'text-slate-600 hover:text-slate-950'
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
-              Course Player
+              <Cpu className="w-3.5 h-3.5" /> LMS Player
             </button>
             <button 
               onClick={() => handleSetTab('tutor')}
-              className={`px-3 py-2 text-xs font-semibold rounded transition-all ${
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'tutor' 
-                  ? 'text-accentCyan border-b-2 border-accentCyan font-bold' 
-                  : 'text-slate-600 hover:text-slate-950'
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
-              AI Tutor
+              <HelpCircle className="w-3.5 h-3.5 text-accentPurple" /> AI Tutor
             </button>
             <button 
               onClick={() => handleSetTab('badges')}
-              className={`px-3 py-2 text-xs font-semibold rounded transition-all ${
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'badges' 
-                  ? 'text-accentCyan border-b-2 border-accentCyan font-bold' 
-                  : 'text-slate-600 hover:text-slate-950'
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
-              Credentials
+              <Shield className="w-3.5 h-3.5 text-accentGreen" /> Credentials
             </button>
             <button 
               onClick={() => handleSetTab('admin')}
-              className={`px-3 py-2 text-xs font-semibold rounded transition-all ${
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'admin' 
-                  ? 'text-accentCyan border-b-2 border-accentCyan font-bold' 
-                  : 'text-slate-600 hover:text-slate-950'
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
-              Admin Panel
+              Admin
             </button>
           </nav>
 
           {/* Right Action icons & buttons */}
-          <div className="hidden lg:flex items-center gap-4 shrink-0">
-            <span className="text-xs font-semibold text-slate-500 hover:text-slate-800 cursor-pointer">Teach</span>
-            <span className="text-xs font-semibold text-slate-500 hover:text-slate-800 cursor-pointer">Partner</span>
-            <div className="w-px bg-slate-300 h-4" />
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <button 
+              onClick={() => setIsAdmissionOpen(true)}
+              className="px-3.5 py-1.5 rounded-lg bg-[#007A87] hover:bg-[#005073] text-white text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-1"
+            >
+              Inquire Admission
+            </button>
             
-            <Globe className="w-4 h-4 text-slate-500 hover:text-slate-800 cursor-pointer" />
-            <span className="text-xs font-semibold text-slate-500 hover:text-slate-800 cursor-pointer font-mono">EN</span>
-            <HelpCircle className="w-4 h-4 text-slate-500 hover:text-slate-800 cursor-pointer" />
-            <Bell className="w-4 h-4 text-slate-500 hover:text-slate-800 cursor-pointer" />
+            <div className="w-px bg-slate-200 h-4" />
             
             <button 
               onClick={() => handleSetTab('learning')}
-              className="px-4 py-1.5 rounded border border-slate-800 hover:bg-slate-50 text-xs font-semibold text-slate-800 transition-all cursor-pointer bg-white"
+              className="px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-700 transition-all cursor-pointer bg-white"
             >
-              Login
-            </button>
-            <button 
-              onClick={() => handleSetTab('explore')}
-              className="px-4 py-1.5 rounded bg-[#72B13B] hover:bg-[#609A2E] text-white text-xs font-bold transition-all shadow-sm cursor-pointer"
-            >
-              Sign up
+              Student Portal
             </button>
           </div>
 

@@ -42,120 +42,93 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
   return (
     <div className="space-y-16 py-8 text-slate-800">
       {/* HERO GRID SECTION */}
-      <section className="grid lg:grid-cols-12 gap-8 items-center pt-6 pb-12 relative overflow-hidden">
-        {/* Decorative backdrop blobs */}
-        <div className="absolute top-0 left-10 w-72 h-72 bg-accentCyan/5 rounded-full blur-3xl -z-10" />
-        
-        {/* Left text column */}
-        <div className="lg:col-span-7 space-y-6 text-left">
-          {/* Hot news pill */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-white shadow-sm text-[11px] text-slate-700 leading-tight">
-            <span className="shrink-0">🔥</span>
-            <span>
-              The cybersecurity job market is hot! See why 5 million learners began their journey with our{' '}
-              <a href="#catalog-section" className="font-bold underline text-[#72B13B] hover:text-[#5d942e]">
-                free Intro to Cybersecurity course
-              </a>
-            </span>
-          </div>
-
-          {/* Heading */}
-          <h1 className="text-4xl md:text-5xl lg:text-[54px] font-sans font-light text-slate-900 leading-[1.1] tracking-tight">
-            Build your skills. <br />
-            <span className="font-extrabold text-[#002D62]">Build your future.</span>
-          </h1>
-
-          {/* Description */}
-          <div className="space-y-4 text-slate-600 text-sm md:text-base leading-relaxed max-w-xl">
-            <p>
-              Free online courses. In-person learning. Certification-aligned pathways designed to help you stand out in the job market. From AI and Cybersecurity to Networking and Digital Literacy, it's all here.
-            </p>
-            <p className="font-semibold text-slate-800">
-              Are you ready to begin, change, or propel your career?
-            </p>
-          </div>
-
-          {/* Action buttons */}
-          <div className="flex flex-wrap gap-4 pt-2">
-            <button 
-              onClick={() => document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-[#72B13B] hover:bg-[#609A2E] text-white px-8 py-3 rounded-full font-bold transition-all text-xs shadow-sm cursor-pointer"
-            >
-              Start Learning
-            </button>
-            <button 
-              onClick={() => document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' })}
-              className="border border-[#72B13B] text-[#72B13B] hover:bg-[#72B13B]/5 px-8 py-3 rounded-full font-bold transition-all text-xs cursor-pointer bg-white"
-            >
-              Explore Subjects
-            </button>
-          </div>
+      {/* HERO SECTION */}
+      <section className="relative rounded-3xl bg-gradient-to-br from-[#002D62] via-[#003B7A] to-[#005073] text-white p-8 md:p-12 lg:p-14 overflow-hidden shadow-xl border border-slate-700/50">
+        {/* Background Decorative Tech Lines */}
+        <div className="absolute inset-0 opacity-15 pointer-events-none -z-0">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
         </div>
 
-        {/* Right graphic collage column */}
-        <div className="lg:col-span-5 relative flex justify-center items-center gap-4 min-h-[340px]">
-          {/* Background SVG Grid and Wavy Lines */}
-          <div className="absolute inset-0 -z-10 opacity-70 flex justify-center items-center pointer-events-none">
-            {/* Grid dot matrix */}
-            <svg width="240" height="240" viewBox="0 0 240 240" className="absolute left-4 bottom-4 text-slate-200" fill="currentColor">
-              <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="3" cy="3" r="1.5" />
-              </pattern>
-              <rect width="240" height="240" fill="url(#dotPattern)" />
-            </svg>
-            {/* Decorative wavy lines */}
-            <svg viewBox="0 0 200 200" className="absolute right-0 top-0 w-64 h-64 text-accentCyan/10" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M 0,100 C 50,50 50,150 100,100 C 150,50 150,150 200,100" />
-              <path d="M 0,120 C 50,70 50,170 100,120 C 150,70 150,170 200,120" strokeDasharray="4 4" />
-            </svg>
+        <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+          {/* Left Text Content Column */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Campus Badge Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-xs font-semibold text-accentCyan">
+              <span className="shrink-0 text-accentGreen">🏛️</span>
+              <span>Network Home Institute • Gulgasht Colony, Multan</span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-display font-extrabold text-white leading-[1.15] tracking-tight">
+              Master Next-Gen Tech with <br className="hidden sm:inline" />
+              <span className="bg-gradient-to-r from-accentCyan via-white to-accentGreen bg-clip-text text-transparent">
+                Physical Hardware & AI Labs
+              </span>
+            </h1>
+
+            {/* Description */}
+            <p className="text-slate-200 text-sm md:text-base leading-relaxed max-w-xl font-sans">
+              South Punjab's premier Cisco Networking Academy. Prepare for CCNA, CCNP, CyberOps, Python Automation, and AI Data Science certifications with hands-on router racks and 24/7 AI cloud sandboxes.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-4 pt-2">
+              <button 
+                onClick={() => onNavigateToTab('player')}
+                className="bg-[#007A87] hover:bg-[#005073] text-white px-7 py-3.5 rounded-xl font-bold transition-all text-xs shadow-lg flex items-center gap-2 cursor-pointer border border-white/20 hover:scale-105"
+              >
+                <Cpu className="w-4 h-4" /> Try Interactive AI Sandbox
+              </button>
+              <button 
+                onClick={() => document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-7 py-3.5 rounded-xl font-bold transition-all text-xs cursor-pointer backdrop-blur-sm"
+              >
+                Explore Course Catalog
+              </button>
+            </div>
           </div>
 
-          {/* Left tall portrait image */}
-          <div className="translate-y-4">
-            <img 
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80"
-              alt="Cisco NetAcad student" 
-              className="w-40 h-64 md:w-44 md:h-72 object-cover rounded-t-[80px] rounded-b-[80px] border border-slate-100 shadow-md transition-transform duration-500 hover:scale-[1.02]"
-            />
-          </div>
-
-          {/* Right landscape stack images */}
-          <div className="flex flex-col gap-4">
-            <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=80"
-              alt="Group of learners studying"
-              className="w-48 h-32 md:w-52 md:h-36 object-cover rounded-[24px] border border-slate-100 shadow-md transition-transform duration-500 hover:scale-[1.02]"
-            />
-            <img 
-              src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=500&auto=format&fit=crop&q=80"
-              alt="Learner working from home"
-              className="w-48 h-32 md:w-52 md:h-36 object-cover rounded-[24px] border border-slate-100 shadow-md transition-transform duration-500 hover:scale-[1.02]"
-            />
+          {/* Right Graphic Column */}
+          <div className="lg:col-span-5 relative flex justify-center items-center">
+            <div className="relative w-full max-w-sm aspect-video sm:aspect-square rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl group">
+              <img 
+                src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&q=80"
+                alt="Network Home Bosan Road Multan Hardware Lab"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
+                <span className="text-[10px] font-mono font-bold text-accentGreen uppercase tracking-wider">Boson Road Multan Lab Racks</span>
+                <h3 className="text-sm font-bold">Cisco Router 4331 & Switch 2960 Hardware Lab</h3>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* STATS BANNER */}
-      <section className="grid grid-cols-2 md:grid-cols-5 gap-6 py-6 px-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm text-center">
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-6 py-6 px-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm text-center">
         <div className="space-y-1">
-          <h3 className="text-3xl font-sans font-bold text-slate-800 tracking-tight">28.3 million</h3>
-          <p className="text-[10px] font-sans font-medium text-slate-500 leading-normal">Students since our start in 1997</p>
+          <h3 className="text-2xl sm:text-3xl font-display font-bold text-[#002D62] tracking-tight">15+ Years</h3>
+          <p className="text-[10px] font-sans font-semibold text-slate-500 uppercase tracking-wider">Excellence in Multan</p>
         </div>
         <div className="space-y-1 border-l border-slate-200">
-          <h3 className="text-3xl font-sans font-bold text-slate-800 tracking-tight">31,300</h3>
-          <p className="text-[10px] font-sans font-medium text-slate-500 leading-normal">Educators around the world</p>
+          <h3 className="text-2xl sm:text-3xl font-display font-bold text-[#002D62] tracking-tight">5,000+</h3>
+          <p className="text-[10px] font-sans font-semibold text-slate-500 uppercase tracking-wider">Certified Graduates</p>
         </div>
         <div className="space-y-1 border-l border-slate-200">
-          <h3 className="text-3xl font-sans font-bold text-slate-800 tracking-tight">12,200</h3>
-          <p className="text-[10px] font-sans font-medium text-slate-500 leading-normal">Organizations offering our courses</p>
-        </div>
-        <div className="space-y-1 border-l border-slate-200 col-span-1">
-          <h3 className="text-3xl font-sans font-bold text-slate-800 tracking-tight">195</h3>
-          <p className="text-[10px] font-sans font-medium text-slate-500 leading-normal">Countries where we serve learners</p>
+          <h3 className="text-2xl sm:text-3xl font-display font-bold text-[#002D62] tracking-tight">100%</h3>
+          <p className="text-[10px] font-sans font-semibold text-slate-500 uppercase tracking-wider">Practical Hands-on Labs</p>
         </div>
         <div className="space-y-1 border-l border-slate-200 col-span-2 md:col-span-1">
-          <h3 className="text-3xl font-sans font-bold text-slate-800 tracking-tight">97%</h3>
-          <p className="text-[10px] font-sans font-medium text-slate-500 leading-normal">Students obtained a job or pathway</p>
+          <h3 className="text-2xl sm:text-3xl font-display font-bold text-accentGreen tracking-tight">Official</h3>
+          <p className="text-[10px] font-sans font-semibold text-slate-500 uppercase tracking-wider">Cisco Academy Partner</p>
         </div>
       </section>
 
