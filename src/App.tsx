@@ -5,7 +5,8 @@ import LmsView from '@/components/LmsView';
 import MentorView from '@/components/MentorView';
 import BadgesView from '@/components/BadgesView';
 import AdminView from '@/components/AdminView';
-import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown } from 'lucide-react';
+import AdmissionModal from '@/components/AdmissionModal';
+import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone } from 'lucide-react';
 import { useAcademyStore } from '@/services/academyState';
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'explore' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('explore');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showDowntime, setShowDowntime] = useState(true);
+  const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
 
   // Sync tab with URL hash
   useEffect(() => {
@@ -38,25 +40,28 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-slate-800 flex flex-col justify-between selection:bg-accentCyan/20">
       
-      {/* 1. DOWNTIME ANNOUNCEMENT BANNER */}
-      {showDowntime && (
-        <div className="bg-[#005043] text-white py-2 px-4 text-xs font-sans relative z-50 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-inner">
-          <div className="flex items-center gap-2">
-            <span className="font-bold uppercase tracking-wider bg-white/20 px-1.5 py-0.5 rounded text-[9px]">Alert</span>
-            <span>
-              <strong>Downtime Schedule - July 2026:</strong> Friday 24 July 2026 at 5:30 p.m. to 9:30 p.m. PDT (UTC-7) for maintenance...
-            </span>
+      {/* 1. TOP MULTAN CAMPUS CONTACT BAR */}
+      <div className="bg-[#002D62] text-white py-2 px-4 text-xs font-sans relative z-50 transition-all flex flex-col md:flex-row items-center justify-between gap-2 shadow-inner border-b border-white/10">
+        <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+          <div className="flex items-center gap-1.5 text-accentCyan">
+            <MapPin className="w-3.5 h-3.5 shrink-0" />
+            <span className="font-medium text-slate-200">311-B Bosan Road, Opp. PTCL Exchange, Gulgasht Colony, Multan</span>
           </div>
-          <div className="flex items-center gap-4 self-end sm:self-center">
-            <a href="https://netacad.com" target="_blank" rel="noreferrer" className="underline hover:text-slate-200 font-semibold whitespace-nowrap">
-              Read more
-            </a>
-            <button onClick={() => setShowDowntime(false)} className="text-white/80 hover:text-white p-0.5 ml-1">
-              <X className="w-3.5 h-3.5" />
-            </button>
+          <div className="flex items-center gap-1.5 text-accentGreen">
+            <Phone className="w-3.5 h-3.5 shrink-0" />
+            <span className="font-mono text-slate-200">0334-8632929 | 0333-7077776</span>
           </div>
         </div>
-      )}
+        
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => setIsAdmissionOpen(true)}
+            className="bg-[#007A87] hover:bg-[#005073] text-white px-3 py-1 rounded text-[11px] font-bold transition-all shadow-sm flex items-center gap-1 cursor-pointer"
+          >
+            🎓 Admissions Open - Apply Now
+          </button>
+        </div>
+      </div>
 
       {/* 2. OFFICIAL CISCO NETACAD HEADER NAVBAR */}
       <header className="sticky top-0 z-40 bg-white border-b border-slate-250 w-full">
@@ -286,6 +291,9 @@ export default function App() {
           <p>© 2026 Network Home Institute of Information Technology. All Rights Reserved.</p>
         </div>
       </footer>
+
+      {/* ADMISSION INQUIRY MODAL */}
+      <AdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
 
     </div>
   );

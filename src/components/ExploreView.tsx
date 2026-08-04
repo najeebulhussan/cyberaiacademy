@@ -330,35 +330,44 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
         </div>
       </section>
 
-      {/* WHY CYBERAI ACADEMY */}
+      {/* WHY NETWORK HOME INSTITUTE */}
       <section className="space-y-8">
-        <h2 className="text-3xl font-display font-bold text-center text-slate-900">Why CyberAI Academy?</h2>
+        <div className="text-center space-y-2 max-w-2xl mx-auto">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#005073]/10 text-[#005073] uppercase tracking-wider">
+            South Punjab Premier IT Institute
+          </span>
+          <h2 className="text-3xl font-display font-bold text-slate-900">Why Network Home Institute?</h2>
+          <p className="text-slate-600 text-sm">
+            Located at 311-B Bosan Road, Gulgasht Colony Multan. Combining physical hands-on hardware labs with state-of-the-art AI learning environments.
+          </p>
+        </div>
+        
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-6 rounded-2xl bg-white border border-slate-200/60 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-full bg-accentPurple/10 flex items-center justify-center text-accentPurple">
-              <Cpu className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-semibold text-slate-900">AI-Powered Tutoring</h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              Get 24/7 personalized assistance from our integrated AI copilot trained on official networking logs.
-            </p>
-          </div>
-          <div className="p-6 rounded-2xl bg-white border border-slate-200/60 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-full bg-accentCyan/10 flex items-center justify-center text-accentCyan">
+          <div className="p-6 rounded-2xl bg-white border border-slate-200/60 shadow-sm space-y-4 hover:shadow-md transition-all">
+            <div className="w-12 h-12 rounded-full bg-[#005073]/10 flex items-center justify-center text-[#005073]">
               <Shield className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-semibold text-slate-900">Cisco NetAcad Integration</h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              Access official, industry-recognized networking and security curricula linked to live grade sync services.
+            <h3 className="text-lg font-bold text-slate-900">Physical Racks & AI Sandboxes</h3>
+            <p className="text-slate-600 text-xs leading-relaxed">
+              Train on physical Cisco routers and switches at our Multan campus alongside 24/7 AI-powered cloud code verification sandboxes.
             </p>
           </div>
-          <div className="p-6 rounded-2xl bg-white border border-slate-200/60 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-full bg-accentGreen/10 flex items-center justify-center text-accentGreen">
+          <div className="p-6 rounded-2xl bg-white border border-slate-200/60 shadow-sm space-y-4 hover:shadow-md transition-all">
+            <div className="w-12 h-12 rounded-full bg-[#007A87]/10 flex items-center justify-center text-[#007A87]">
               <Award className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-semibold text-slate-900">Verifiable Digital Credentials</h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              Earn cryptographically signed W3C Open Badges to showcase your skills on LinkedIn and Credly.
+            <h3 className="text-lg font-bold text-slate-900">Cisco & Global Certifications</h3>
+            <p className="text-slate-600 text-xs leading-relaxed">
+              Prepare for CCNA, CCNP, CyberOps, Python, and AI Machine Learning certifications with official curricula and practical mock exams.
+            </p>
+          </div>
+          <div className="p-6 rounded-2xl bg-white border border-slate-200/60 shadow-sm space-y-4 hover:shadow-md transition-all">
+            <div className="w-12 h-12 rounded-full bg-accentGreen/10 flex items-center justify-center text-accentGreen">
+              <Cpu className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900">University & Industry Internships</h3>
+            <p className="text-slate-600 text-xs leading-relaxed">
+              Direct pathways for On-the-Job Training (OJT), university research partnerships, and hiring recruitment in top tech firms.
             </p>
           </div>
         </div>
