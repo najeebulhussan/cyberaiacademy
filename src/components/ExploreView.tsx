@@ -285,7 +285,7 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
       {/* CAREER PATHWAYS */}
       <section id="pathways-section" className="space-y-6">
         <div className="space-y-2">
-          <h2 className="text-3xl font-display font-bold text-slate-900">Cisco & CyberAI Career Pathways</h2>
+          <h2 className="text-3xl font-display font-bold text-slate-900">Network Home Career Pathways</h2>
           <p className="text-slate-600 text-sm max-w-xl">
             Select a structured learning pathway that directly aligns with global certifications and real-world high-paying jobs.
           </p>
@@ -430,7 +430,7 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
                     <div className="p-4 space-y-2">
                       {/* Provider text */}
                       <span className="text-[9px] font-sans font-bold text-slate-400 block tracking-wide">
-                        {course.provider === 'NetAcad' ? 'Cisco Networking Academy' : 'Python Institute'}
+                        {course.provider === 'NetAcad' ? 'Network Home Institute' : 'Python Institute'}
                       </span>
                       
                       {/* Course type */}

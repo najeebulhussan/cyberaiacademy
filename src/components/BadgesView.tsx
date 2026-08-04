@@ -30,8 +30,8 @@ function VerificationModal({ badge, onClose }: VerificationModalProps) {
           <div className="w-16 h-16 bg-accentGreen/10 text-accentGreen rounded-full flex items-center justify-center mx-auto">
             <Award className="w-8 h-8" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900">Credly Verified Credential</h3>
-          <p className="text-xs text-slate-500">Official digital badge issued by Cisco Systems, Inc.</p>
+          <h3 className="text-lg font-bold text-slate-900">Verified Credential</h3>
+          <p className="text-xs text-slate-500">Official digital badge issued by Network Home Institute of Information Technology.</p>
         </div>
 
         <div className="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs">
@@ -41,7 +41,7 @@ function VerificationModal({ badge, onClose }: VerificationModalProps) {
           </div>
           <div className="flex justify-between py-1.5 border-b border-slate-200">
             <span className="text-slate-500">Issuer Authority</span>
-            <span className="font-bold text-slate-800">Cisco Networking Academy</span>
+            <span className="font-bold text-slate-800">Network Home Institute of Information Technology</span>
           </div>
           <div className="flex justify-between py-1.5 border-b border-slate-200">
             <span className="text-slate-500">Verification Platform</span>
@@ -198,7 +198,7 @@ export default function BadgesView() {
           <path id="archPath" d="M 22,35 A 32,32 0 0,1 78,35" fill="none" />
           <text fontSize="7" fontWeight="bold" fill={primaryColor} letterSpacing="1">
             <textPath href="#archPath" startOffset="50%" textAnchor="middle">
-              CISCO SYSTEMS
+              NETWORK HOME
             </textPath>
           </text>
           
@@ -245,7 +245,7 @@ export default function BadgesView() {
           Credential Locker
         </span>
         <h1 className="text-3xl md:text-4xl font-display font-bold text-slate-900">
-          Cisco Networking Academy Credentials
+          Network Home Credentials & Badges
         </h1>
         <p className="text-slate-600 text-sm leading-relaxed">
           Official digital badges issued in partnership with Credly. Track your progress, verify core network and security competencies, and share certificates directly to LinkedIn and recruitment portfolios.

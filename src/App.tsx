@@ -68,8 +68,8 @@ export default function App() {
             className="flex items-center gap-2 cursor-pointer shrink-0"
           >
             <div className="flex flex-col text-slate-900 leading-none">
-              <span className="font-sans font-bold text-xs tracking-wider text-[#005073]">Cisco</span>
-              <span className="font-sans font-extrabold text-[15px] text-[#007A87]">Networking Academy</span>
+              <span className="font-sans font-extrabold text-sm tracking-wider text-[#005073]">Network Home</span>
+              <span className="font-sans font-bold text-xs text-[#007A87]">Institute of Information Technology</span>
             </div>
           </div>
 
@@ -280,10 +280,10 @@ export default function App() {
       {/* FOOTER AREA */}
       <footer className="border-t border-slate-200/80 bg-slate-50 py-8 mt-16 text-center text-xs text-textSecondary">
         <div className="max-w-7xl mx-auto px-4 space-y-4">
-          <div className="flex items-center justify-center gap-2 font-display font-semibold text-slate-800">
-            <Shield className="w-4 h-4 text-accentCyan" /> CyberAI Academy
+          <div className="flex items-center justify-center gap-2 font-display font-bold text-slate-800">
+            <Shield className="w-4 h-4 text-accentCyan" /> Network Home Institute of Information Technology
           </div>
-          <p>© 2026 Cisco NetAcad & CyberAI Joint Learning Initiative. All Rights Reserved.</p>
+          <p>© 2026 Network Home Institute of Information Technology. All Rights Reserved.</p>
         </div>
       </footer>
 
