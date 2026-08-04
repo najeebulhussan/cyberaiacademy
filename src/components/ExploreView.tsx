@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Course, useAcademyStore } from '@/services/academyState';
+import NetworkSimulator from '@/components/NetworkSimulator';
 import { Shield, Cpu, Award, Clock, ArrowRight, X, BookOpen, Star, Network, Brain, Code, Monitor, Laptop, User, Leaf, Cloud } from 'lucide-react';
 
 interface ExploreViewProps {
@@ -99,7 +100,7 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
           <div className="lg:col-span-5 relative flex justify-center items-center">
             <div className="relative w-full max-w-sm aspect-video sm:aspect-square rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl group">
               <img 
-                src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&q=80"
+                src="/network_home_hero.jpg"
                 alt="Network Home Bosan Road Multan Hardware Lab"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -131,6 +132,9 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
           <p className="text-[10px] font-sans font-semibold text-slate-500 uppercase tracking-wider">Cisco Academy Partner</p>
         </div>
       </section>
+
+      {/* INTERACTIVE HARDWARE & LAB TOPOLOGY SIMULATOR */}
+      <NetworkSimulator />
 
       {/* SUBJECT AREAS SECTION */}
       <section className="space-y-8 py-4">
