@@ -42,21 +42,21 @@ export default function CyberArcade() {
     if (type === 'cyber') {
       setPersona({
         title: 'SOC Cyber Defense Specialist 🛡️',
-        salary: '$92,000 / year',
+        salary: 'PKR 220,000 / month',
         cert: 'Cisco CCST & CyberOps Associate',
         match: '98% Match'
       });
     } else if (type === 'ai') {
       setPersona({
         title: 'AI & MLOps Automation Engineer 🤖',
-        salary: '$115,000 / year',
+        salary: 'PKR 280,000 / month',
         cert: 'Python Essentials & Cisco DevNet',
         match: '96% Match'
       });
     } else {
       setPersona({
         title: 'Enterprise Network Architect 🌐',
-        salary: '$105,000 / year',
+        salary: 'PKR 250,000 / month',
         cert: 'Cisco CCNA 200-301 & CCNP Enterprise',
         match: '99% Match'
       });

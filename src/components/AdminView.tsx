@@ -36,7 +36,7 @@ export default function AdminView() {
   // --- Pathway Form State ---
   const [pathTitle, setPathTitle] = useState('');
   const [pathCareer, setPathCareer] = useState('');
-  const [pathSalary, setPathSalary] = useState('$90,000');
+  const [pathSalary, setPathSalary] = useState('PKR 250,000/mo');
   const [pathCert, setPathCert] = useState('');
   const [pathDesc, setPathDesc] = useState('');
   const [pathSelectedCourses, setPathSelectedCourses] = useState<string[]>([]);
@@ -436,7 +436,7 @@ export default function AdminView() {
                       type="text" 
                       value={pathSalary}
                       onChange={(e) => setPathSalary(e.target.value)}
-                      placeholder="e.g. $110,000"
+                      placeholder="e.g. PKR 250,000/mo"
                       className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-accentCyan text-slate-700"
                     />
                   </div>
