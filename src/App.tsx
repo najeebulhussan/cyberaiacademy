@@ -79,9 +79,11 @@ export default function App() {
             onClick={() => handleSetTab('explore')}
             className="flex items-center gap-2.5 cursor-pointer shrink-0"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#002D62] to-[#007A87] text-white flex items-center justify-center font-display font-extrabold text-sm shadow-md">
-              NH
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="NHIIT Logo" 
+              className="w-10 h-10 object-contain drop-shadow-md"
+            />
             <div className="flex flex-col text-slate-900 leading-none">
               <span className="font-sans font-extrabold text-sm tracking-wide text-[#002D62]">Network Home</span>
               <span className="font-sans font-semibold text-[10px] text-[#007A87] tracking-tight">Institute of IT • Multan</span>
