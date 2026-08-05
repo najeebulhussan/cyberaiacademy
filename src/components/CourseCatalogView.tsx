@@ -3,7 +3,7 @@ import { Course, useAcademyStore } from '@/services/academyState';
 import { Search, Filter, BookOpen, Clock, ShieldCheck, Cpu, Award, X, CheckCircle2, ChevronRight, Server, Shield, Cloud, Terminal, Code } from 'lucide-react';
 
 interface CourseCatalogViewProps {
-  onNavigateToTab: (tab: 'learning' | 'player' | 'tutor') => void;
+  onNavigateToTab: (tab: 'explore' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => void;
   initialCategory?: string;
 }
 

@@ -6,7 +6,7 @@ import FacultyShowcase from '@/components/FacultyShowcase';
 import { Shield, Cpu, Award, Clock, ArrowRight, X, BookOpen, Star, Network, Brain, Code, Monitor, Laptop, User, Leaf, Cloud } from 'lucide-react';
 
 interface ExploreViewProps {
-  onNavigateToTab: (tab: 'learning' | 'player' | 'tutor') => void;
+  onNavigateToTab: (tab: 'explore' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => void;
 }
 
 export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
@@ -73,58 +73,97 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
         <div className="particle w-1.5 h-1.5" style={{ top: '45%', left: '55%' }} />
 
         {/* Orbit Ring Decorations */}
-        <div className="absolute top-1/2 right-[-100px] w-[300px] h-[300px] border border-white/5 rounded-full animate-orbit pointer-events-none" />
-        <div className="absolute top-1/2 right-[-60px] w-[220px] h-[220px] border border-white/8 rounded-full animate-orbit-reverse pointer-events-none" />
+        <div className="absolute top-1/2 right-[-100px] w-[320px] h-[320px] border border-white/10 rounded-full animate-orbit pointer-events-none" />
+        <div className="absolute top-1/2 right-[-60px] w-[240px] h-[240px] border border-white/15 rounded-full animate-orbit-reverse pointer-events-none" />
 
-        <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
-          {/* Left Text Content */}
+        <div className="grid lg:grid-cols-12 gap-10 items-center relative z-10">
+          
+          {/* Left Text Content Column */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-xs font-semibold text-accentCyan animate-slide-up">
-              <span className="w-2 h-2 rounded-full bg-accentGreen animate-pulse" />
-              <span>Network Home Institute • Gulgasht Colony, Multan</span>
+            
+            {/* Dual Glass Status Badges */}
+            <div className="flex flex-wrap gap-2.5 items-center animate-slide-up">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-xs font-semibold text-accentCyan">
+                <span className="w-2 h-2 rounded-full bg-accentGreen animate-pulse shrink-0" />
+                <span>Cisco Academy Partner • Gulgasht Colony, Multan</span>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold font-mono">
+                <span>🔥 Admissions Open 2026</span>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-display font-extrabold text-white leading-[1.1] tracking-tight animate-slide-up" style={{ animationDelay: '0.15s' }}>
-              Master Next-Gen Tech with <br className="hidden sm:inline" />
+            {/* Main Headline */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-display font-extrabold text-white leading-[1.12] tracking-tight animate-slide-up" style={{ animationDelay: '0.15s' }}>
+              Master Enterprise IT & AI with <br className="hidden sm:inline" />
               <span className="bg-gradient-to-r from-[#00F2FE] via-white to-[#1E824C] animate-gradient-text">
-                Physical Hardware & AI Labs
+                Physical Hardware & Cloud Racks
               </span>
             </h1>
 
+            {/* Sub-headline Description */}
             <p className="text-slate-200/90 text-sm md:text-base leading-relaxed max-w-xl font-sans animate-slide-up" style={{ animationDelay: '0.3s' }}>
-              South Punjab's premier Cisco Networking Academy. Prepare for CCNA, CCNP, CyberOps, Python Automation, and AI Data Science certifications with hands-on router racks and 24/7 AI cloud sandboxes.
+              South Punjab's premier institute for <strong>Cisco CCNA/CCNP, Red Hat RHCSA Linux, AWS Cloud, DevOps & Ethical Hacking</strong>. Train on physical Cisco 4331 router racks at 311-B Bosan Road Multan alongside 24/7 AI cloud sandboxes.
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-2 animate-slide-up" style={{ animationDelay: '0.45s' }}>
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-3.5 pt-2 animate-slide-up" style={{ animationDelay: '0.45s' }}>
+              <button 
+                onClick={() => onNavigateToTab('programs')}
+                className="bg-[#007A87] hover:bg-[#005073] text-white px-7 py-3.5 rounded-xl font-bold text-xs shadow-xl flex items-center gap-2 cursor-pointer border border-white/20 hover:scale-105 transition-transform"
+              >
+                <BookOpen className="w-4 h-4" /> Explore All Programs
+              </button>
+
               <button 
                 onClick={() => onNavigateToTab('player')}
-                className="cyber-btn px-7 py-3.5 rounded-xl font-bold text-xs shadow-lg flex items-center gap-2 cursor-pointer border border-white/20 hover:scale-105 transition-transform"
+                className="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-6 py-3.5 rounded-xl font-bold transition-all text-xs cursor-pointer backdrop-blur-md hover:scale-105 flex items-center gap-2"
               >
-                <Cpu className="w-4 h-4" /> Try Interactive AI Sandbox
-              </button>
-              <button 
-                onClick={() => document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-7 py-3.5 rounded-xl font-bold transition-all text-xs cursor-pointer backdrop-blur-sm hover:scale-105"
-              >
-                Explore Course Catalog
+                <Cpu className="w-4 h-4 text-accentCyan" /> Interactive AI Sandbox
               </button>
             </div>
+
+            {/* Key Feature Chips Bar */}
+            <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-white/10 text-xs font-semibold text-slate-200">
+              <div className="flex items-center gap-2">
+                <span className="text-accentGreen">✓</span> Physical Router Racks
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-accentGreen">✓</span> Cyber SOC Lab
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-accentGreen">✓</span> RHCSA Linux RHEL
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-accentGreen">✓</span> W3C Digital Badges
+              </div>
+            </div>
+
           </div>
 
-          {/* Right Hero Image */}
+          {/* Right Column: Hero Graphic Card Showcase */}
           <div className="lg:col-span-5 relative flex justify-center items-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <div className="relative w-full max-w-sm aspect-video sm:aspect-square rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl group hero-image-float">
+            <div className="relative w-full max-w-sm aspect-video sm:aspect-square rounded-3xl overflow-hidden border-2 border-white/30 shadow-2xl group hero-image-float">
               <img 
                 src="/network_home_hero.jpg"
                 alt="Network Home Bosan Road Multan Hardware Lab"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
-                <span className="text-[10px] font-mono font-bold text-accentGreen uppercase tracking-wider">Bosan Road Multan Lab Racks</span>
-                <h3 className="text-sm font-bold">Cisco Router 4331 & Switch 2960 Hardware Lab</h3>
+              
+              {/* Live Status Overlay Badge */}
+              <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-[10px] font-mono font-bold text-emerald-400 flex items-center gap-1.5 shadow-md">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0" />
+                <span>Multan Lab R1 Active</span>
+              </div>
+
+              {/* Bottom Card Title Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                <span className="text-[10px] font-mono font-bold text-accentGreen uppercase tracking-wider">311-B Bosan Road Multan</span>
+                <h3 className="text-sm font-extrabold text-white">Cisco 4331 ISR & Catalyst 2960 Hardware Lab</h3>
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
