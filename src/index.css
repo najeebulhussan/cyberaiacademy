@@ -402,6 +402,22 @@
   animation: hero-float 6s ease-in-out infinite;
 }
 
+/* Hero Animated 3D Logo Float & Glow */
+@keyframes logo-3d-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    filter: drop-shadow(0 15px 30px rgba(0, 242, 254, 0.35)) drop-shadow(0 0 10px rgba(0, 122, 135, 0.4));
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg) scale(1.04);
+    filter: drop-shadow(0 25px 45px rgba(0, 242, 254, 0.55)) drop-shadow(0 0 25px rgba(0, 242, 254, 0.7));
+  }
+}
+
+.hero-animated-logo {
+  animation: logo-3d-float 5s ease-in-out infinite;
+}
+
 /* ========================================
    COUNTER & STATS ANIMATIONS
    ======================================== */

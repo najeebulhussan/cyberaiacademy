@@ -141,8 +141,30 @@ export default function ExploreView({ onNavigateToTab }: ExploreViewProps) {
 
           </div>
 
-          {/* Right Column: Hero Graphic Card Showcase */}
-          <div className="lg:col-span-5 relative flex justify-center items-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          {/* Right Column: Hero Graphic & Animated NHIIT Logo Showcase */}
+          <div className="lg:col-span-5 relative flex flex-col justify-center items-center gap-6 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            
+            {/* Animated 3D Floating NHIIT Logo Emblem */}
+            <div className="relative flex justify-center items-center">
+              <div className="hero-animated-logo w-28 h-28 sm:w-36 sm:h-36 rounded-3xl p-3.5 bg-gradient-to-br from-white/90 via-blue-50/60 to-white/40 backdrop-blur-xl border-2 border-white/80 shadow-2xl flex items-center justify-center relative group cursor-pointer">
+                
+                {/* Specular glass sheen highlight line */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-transparent via-white/40 to-transparent pointer-events-none" />
+
+                <img 
+                  src="/logo.png" 
+                  alt="NHIIT Animated Diamond Logo" 
+                  className="w-full h-full object-contain filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                />
+
+                {/* Corner Status Dot */}
+                <div className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center shadow-lg">
+                  <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+                </div>
+              </div>
+            </div>
+
+            {/* Hardware Lab Photo Card */}
             <div className="relative w-full max-w-sm aspect-video sm:aspect-square rounded-3xl overflow-hidden border-2 border-white/30 shadow-2xl group hero-image-float">
               <img 
                 src="/network_home_hero.jpg"
