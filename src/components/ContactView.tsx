@@ -56,7 +56,7 @@ export default function ContactView() {
                 </div>
                 <div>
                   <span className="font-bold text-slate-900 block text-sm">Call / WhatsApp Support</span>
-                  <span className="text-slate-600 font-mono">+92-300-6302484</span>
+                  <span className="text-slate-600 font-mono">+92-333-3017333</span>
                 </div>
               </div>
 
@@ -83,7 +83,7 @@ export default function ContactView() {
 
             <div className="pt-2">
               <a 
-                href="https://wa.me/923006302484" 
+                href="https://wa.me/923333017333" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all"

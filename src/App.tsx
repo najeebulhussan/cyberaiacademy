@@ -65,7 +65,7 @@ export default function App() {
           </div>
           <div className="flex items-center gap-1.5 text-accentGreen">
             <Phone className="w-3.5 h-3.5 shrink-0" />
-            <span className="font-mono text-slate-200">0334-8632929 | 0333-7077776</span>
+            <span className="font-mono text-slate-200">+92-333-3017333</span>
           </div>
         </div>
         

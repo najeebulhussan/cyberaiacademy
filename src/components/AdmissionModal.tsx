@@ -86,7 +86,7 @@ export default function AdmissionModal({ isOpen, onClose }: AdmissionModalProps)
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="0334-8632929"
+                  placeholder="0333-3017333"
                   className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-[#005073] text-slate-800"
                 />
               </div>
