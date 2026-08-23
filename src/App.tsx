@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ExploreView from '@/components/ExploreView';
 import Home2View from '@/components/Home2View';
 import CourseCatalogView from '@/components/CourseCatalogView';
 import AboutUsView from '@/components/AboutUsView';
@@ -19,12 +18,13 @@ import { useAcademyStore } from '@/services/academyState';
 
 export default function App() {
   const { profile } = useAcademyStore();
-  const [activeTab, setActiveTab] = useState<'explore' | 'home2' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('explore');
+  const [activeTab, setActiveTab] = useState<'explore' | 'home2' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('home2');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
   const [isAdminAuthOpen, setIsAdminAuthOpen] = useState(false);
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
   const [isVerifierOpen, setIsVerifierOpen] = useState(false);
+  const [activeTheme, setActiveTheme] = useState<'theme2' | 'theme1'>('theme2');
 
   // Sync tab with URL hash
   useEffect(() => {
@@ -32,6 +32,8 @@ export default function App() {
       const hash = window.location.hash.replace('#', '');
       if (['explore', 'home2', 'programs', 'about', 'admissions', 'contact', 'learning', 'player', 'tutor', 'badges', 'admin'].includes(hash)) {
         setActiveTab(hash as any);
+      } else if (!hash) {
+        setActiveTab('home2');
       }
     };
 
@@ -52,7 +54,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-800 flex flex-col justify-between selection:bg-accentCyan/20">
+    <div className={`min-h-screen flex flex-col justify-between selection:bg-accentCyan/20 transition-colors duration-300 ${activeTheme === 'theme2' ? 'bg-white text-slate-800' : 'bg-slate-950 text-slate-100'}`}>
       
       {/* 1. TOP MULTAN CAMPUS CONTACT BAR */}
       <div className="bg-[#002D62] text-white py-2 px-4 text-xs font-sans relative z-50 transition-all flex flex-col md:flex-row items-center justify-between gap-2 shadow-inner border-b border-white/10">
@@ -69,6 +71,13 @@ export default function App() {
         
         <div className="flex items-center gap-3">
           <button 
+            onClick={() => setActiveTheme(activeTheme === 'theme2' ? 'theme1' : 'theme2')}
+            className="bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded text-[11px] font-mono transition-all flex items-center gap-1 cursor-pointer border border-white/20"
+            title="Toggle between Theme 2 (Executive Light) & Theme 1 (Classic Dark)"
+          >
+            🎨 {activeTheme === 'theme2' ? 'Theme 2 (Light)' : 'Theme 1 (Dark)'}
+          </button>
+          <button 
             onClick={() => setIsAdmissionOpen(true)}
             className="bg-[#007A87] hover:bg-[#005073] text-white px-3 py-1 rounded text-[11px] font-bold transition-all shadow-sm flex items-center gap-1 cursor-pointer"
           >
@@ -78,12 +87,12 @@ export default function App() {
       </div>
 
       {/* 2. OFFICIAL NETWORK HOME HEADER NAVBAR (GLOSSY GLASS) */}
-      <header className="sticky top-0 z-40 glass-nav w-full transition-all">
+      <header className={`sticky top-0 z-40 w-full transition-all ${activeTheme === 'theme2' ? 'glass-nav' : 'bg-slate-900/90 backdrop-blur-md border-b border-slate-800'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           
           {/* Brand Logo with 3D Glass Badge */}
           <div 
-            onClick={() => handleSetTab('explore')}
+            onClick={() => handleSetTab('home2')}
             className="flex items-center gap-3 cursor-pointer shrink-0 group"
           >
             <div className="nhiit-logo-badge p-1 rounded-xl bg-gradient-to-br from-white/80 via-blue-50/50 to-white/30 backdrop-blur-md border border-white/80 shadow-md">
@@ -93,40 +102,30 @@ export default function App() {
                 className="w-10 h-10 object-contain drop-shadow-md group-hover:scale-105 transition-transform"
               />
             </div>
-            <div className="flex flex-col text-slate-900 leading-none">
+            <div className={`flex flex-col leading-none ${activeTheme === 'theme2' ? 'text-slate-900' : 'text-white'}`}>
               <span className="font-sans font-extrabold text-sm tracking-wide text-[#002D62] group-hover:text-[#007A87] transition-colors">Network Home</span>
               <span className="font-sans font-semibold text-[10px] text-[#007A87] tracking-tight">Institute of IT • Multan</span>
             </div>
           </div>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links (Home 2 is default Home, Main Home 1 is hidden) */}
           <nav className="hidden lg:flex items-center gap-1">
             <button 
-              onClick={() => handleSetTab('explore')}
-              className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
-                activeTab === 'explore' 
-                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
-                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
-              }`}
-            >
-              <BookOpen className="w-3.5 h-3.5" /> Home
-            </button>
-            <button 
               onClick={() => handleSetTab('home2')}
-              className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'home2' 
-                  ? 'text-blue-600 bg-blue-50 font-bold' 
-                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : activeTheme === 'theme2' ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-50' : 'text-slate-300 hover:text-white hover:bg-slate-800'
               }`}
             >
-              <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-pulse" /> Home 2
+              <BookOpen className="w-3.5 h-3.5 text-[#007A87]" /> Home
             </button>
             <button 
               onClick={() => handleSetTab('programs')}
               className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'programs' 
                   ? 'text-[#005073] bg-[#005073]/10 font-bold' 
-                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
+                  : activeTheme === 'theme2' ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-50' : 'text-slate-300 hover:text-white hover:bg-slate-800'
               }`}
             >
               <Layers className="w-3.5 h-3.5 text-[#007A87]" /> Courses & Programs
@@ -136,7 +135,7 @@ export default function App() {
               className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'admissions' 
                   ? 'text-[#005073] bg-[#005073]/10 font-bold' 
-                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
+                  : activeTheme === 'theme2' ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-50' : 'text-slate-300 hover:text-white hover:bg-slate-800'
               }`}
             >
               <Calendar className="w-3.5 h-3.5 text-accentGreen" /> Admissions
@@ -146,7 +145,7 @@ export default function App() {
               className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'about' 
                   ? 'text-[#005073] bg-[#005073]/10 font-bold' 
-                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
+                  : activeTheme === 'theme2' ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-50' : 'text-slate-300 hover:text-white hover:bg-slate-800'
               }`}
             >
               <Info className="w-3.5 h-3.5 text-[#002D62]" /> About Us
@@ -156,7 +155,7 @@ export default function App() {
               className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'contact' 
                   ? 'text-[#005073] bg-[#005073]/10 font-bold' 
-                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
+                  : activeTheme === 'theme2' ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-50' : 'text-slate-300 hover:text-white hover:bg-slate-800'
               }`}
             >
               <Mail className="w-3.5 h-3.5 text-amber-600" /> Contact
@@ -166,7 +165,7 @@ export default function App() {
               className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'player' 
                   ? 'text-[#005073] bg-[#005073]/10 font-bold' 
-                  : 'text-slate-650 hover:text-slate-900 hover:bg-slate-50'
+                  : activeTheme === 'theme2' ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-50' : 'text-slate-300 hover:text-white hover:bg-slate-800'
               }`}
             >
               <Cpu className="w-3.5 h-3.5 text-[#007A87]" /> LMS Player
@@ -206,12 +205,44 @@ export default function App() {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-slate-200 bg-white p-4 space-y-2 shadow-xl animate-fade-in">
             <button 
-              onClick={() => handleSetTab('explore')}
+              onClick={() => handleSetTab('home2')}
               className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
-                activeTab === 'explore' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
+                activeTab === 'home2' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
-              <BookOpen className="w-4 h-4" /> Programs Catalog
+              <BookOpen className="w-4 h-4" /> Home
+            </button>
+            <button 
+              onClick={() => handleSetTab('programs')}
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'programs' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              <Layers className="w-4 h-4 text-[#007A87]" /> Courses & Programs
+            </button>
+            <button 
+              onClick={() => handleSetTab('admissions')}
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'admissions' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              <Calendar className="w-4 h-4 text-accentGreen" /> Admissions
+            </button>
+            <button 
+              onClick={() => handleSetTab('about')}
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'about' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              <Info className="w-4 h-4 text-[#002D62]" /> About Us
+            </button>
+            <button 
+              onClick={() => handleSetTab('contact')}
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'contact' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              <Mail className="w-4 h-4 text-amber-600" /> Contact
             </button>
             <button 
               onClick={() => handleSetTab('learning')}
@@ -228,21 +259,6 @@ export default function App() {
               }`}
             >
               <Cpu className="w-4 h-4 text-[#007A87]" /> LMS Code Player
-            </button>
-            <button 
-              onClick={() => handleSetTab('tutor')}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
-                activeTab === 'tutor' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
-              }`}
-            >
-              <HelpCircle className="w-4 h-4 text-accentPurple" /> AI Tutor
-            </button>
-            <button 
-              onClick={() => handleSetTab('badges')}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
-                activeTab === 'badges' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
-              }`}
-            >
             </button>
             <div className="border-t border-slate-200 pt-3 flex flex-col gap-2">
               <button 
@@ -261,8 +277,8 @@ export default function App() {
 
       {/* MAIN CONTENT WORKSPACE VIEWPORT */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-        {activeTab === 'explore' && <ExploreView onNavigateToTab={handleSetTab} />}
         {activeTab === 'home2' && <Home2View onNavigateToTab={handleSetTab} />}
+        {activeTab === 'explore' && <Home2View onNavigateToTab={handleSetTab} />}
         {activeTab === 'programs' && <CourseCatalogView onNavigateToTab={handleSetTab} />}
         {activeTab === 'about' && <AboutUsView />}
         {activeTab === 'admissions' && <AdmissionsView />}
@@ -271,7 +287,7 @@ export default function App() {
         {activeTab === 'player' && <LmsView />}
         {activeTab === 'tutor' && <MentorView />}
         {activeTab === 'badges' && <BadgesView />}
-        {activeTab === 'admin' && (isAdminAuthenticated ? <AdminView /> : <ExploreView onNavigateToTab={handleSetTab} />)}
+        {activeTab === 'admin' && (isAdminAuthenticated ? <AdminView /> : <Home2View onNavigateToTab={handleSetTab} />)}
       </main>
 
       {/* FOOTER AREA */}
