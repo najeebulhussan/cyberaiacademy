@@ -22,10 +22,11 @@
   function save() { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} }
 
   /* ================= Google Sheets Webhook Sync ================= */
+  const DEFAULT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx_jnSxJ5VldKya0WsTDG8woz0dgJh3ORBQOIxJWy2oU5WOARUwtTUTVO0U09m4pou5/exec';
   const DEFAULT_WEBHOOK_KEY = 'cybersmart_google_sheet_webhook';
   function syncGoogleSheet(data) {
     try {
-      const webhookUrl = localStorage.getItem(DEFAULT_WEBHOOK_KEY) || global.CYBERSMART_SHEET_WEBHOOK || '';
+      const webhookUrl = localStorage.getItem(DEFAULT_WEBHOOK_KEY) || global.CYBERSMART_SHEET_WEBHOOK || DEFAULT_WEBHOOK_URL;
       if (!webhookUrl) return;
       const o = overall();
       const payload = Object.assign({

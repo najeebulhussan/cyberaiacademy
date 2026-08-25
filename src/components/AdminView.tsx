@@ -21,7 +21,8 @@ export default function AdminView() {
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   // --- Google Sheets Webhook State ---
-  const [sheetWebhookUrl, setSheetWebhookUrl] = useState(() => localStorage.getItem('cybersmart_google_sheet_webhook') || '');
+  const DEFAULT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx_jnSxJ5VldKya0WsTDG8woz0dgJh3ORBQOIxJWy2oU5WOARUwtTUTVO0U09m4pou5/exec';
+  const [sheetWebhookUrl, setSheetWebhookUrl] = useState(() => localStorage.getItem('cybersmart_google_sheet_webhook') || DEFAULT_WEBHOOK_URL);
   const [isTestingWebhook, setIsTestingWebhook] = useState(false);
   const [testWebhookResult, setTestWebhookResult] = useState<string | null>(null);
 
