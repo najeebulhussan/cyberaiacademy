@@ -584,38 +584,38 @@
       g.textAlign = 'center';
 
       g.fillStyle = 'rgba(140,215,255,.85)';
-      g.font = '600 26px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+      g.font = '600 24px ui-sans-serif, Segoe UI, system-ui, sans-serif';
       g.letterSpacing = '10px';
-      g.fillText('CERTIFICATE OF COMPLETION', cx, 190);
+      g.fillText('CERTIFICATE OF COMPLETION', cx, 175);
       g.letterSpacing = '0px';
 
       g.fillStyle = '#eaf4ff';
-      g.font = '800 92px ui-sans-serif, Segoe UI, system-ui, sans-serif';
-      g.fillText('CYBER SMART', cx, 300);
+      g.font = '800 88px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+      g.fillText('CYBER SMART', cx, 275);
 
       g.fillStyle = 'rgba(190,220,255,.75)';
-      g.font = '400 34px ui-sans-serif, Segoe UI, system-ui, sans-serif';
-      g.fillText('Protecting Yourself in an AI-Powered Digital World', cx, 356);
+      g.font = '400 32px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+      g.fillText('Protecting Yourself in an AI-Powered Digital World', cx, 328);
 
       g.fillStyle = 'rgba(160,200,240,.6)';
-      g.font = '400 26px ui-sans-serif, Segoe UI, system-ui, sans-serif';
-      g.fillText('This certifies that', cx, 468);
+      g.font = '400 24px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+      g.fillText('This certifies that', cx, 430);
 
       const nm = (P.name || '').trim() || 'Your Name';
       g.fillStyle = '#7ee6ff';
-      let fs = 82;
+      let fs = 78;
       g.font = '700 ' + fs + 'px ui-sans-serif, Segoe UI, system-ui, sans-serif';
       while (g.measureText(nm).width > W - 320 && fs > 34) {
         fs -= 4; g.font = '700 ' + fs + 'px ui-sans-serif, Segoe UI, system-ui, sans-serif';
       }
-      g.fillText(nm, cx, 560);
+      g.fillText(nm, cx, 520);
       g.strokeStyle = 'rgba(126,230,255,.4)'; g.lineWidth = 2;
-      g.beginPath(); g.moveTo(cx - 340, 596); g.lineTo(cx + 340, 596); g.stroke();
+      g.beginPath(); g.moveTo(cx - 340, 555); g.lineTo(cx + 340, 555); g.stroke();
 
       g.fillStyle = 'rgba(200,225,255,.8)';
-      g.font = '400 28px ui-sans-serif, Segoe UI, system-ui, sans-serif';
-      g.fillText('has completed all 13 modules and 12 practical labs,', cx, 660);
-      g.fillText('and passed the final assessment with a score of ' + (P.exam || 0) + '%.', cx, 702);
+      g.font = '400 26px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+      g.fillText('has completed all 13 modules and 12 practical labs,', cx, 615);
+      g.fillText('and passed the final assessment with a score of ' + (P.exam || 0) + '%.', cx, 655);
 
       // five doors row
       const doors = C.doors.map(d => d.name.toUpperCase());
@@ -625,43 +625,43 @@
       let x = cx - total / 2;
       doors.forEach((d, i) => {
         g.strokeStyle = colors[i] + '77'; g.lineWidth = 2;
-        g.strokeRect(x, 776, boxW, 84);
-        g.fillStyle = colors[i] + '18'; g.fillRect(x, 776, boxW, 84);
+        g.strokeRect(x, 715, boxW, 80);
+        g.fillStyle = colors[i] + '18'; g.fillRect(x, 715, boxW, 80);
         g.fillStyle = colors[i];
         g.font = '700 22px ui-sans-serif, Segoe UI, system-ui, sans-serif';
-        g.fillText(d, x + boxW / 2, 812);
+        g.fillText(d, x + boxW / 2, 750);
         g.fillStyle = 'rgba(220,235,255,.55)';
-        g.font = '400 16px ui-sans-serif, Segoe UI, system-ui, sans-serif';
-        g.fillText('DOOR 0' + (i + 1), x + boxW / 2, 840);
+        g.font = '400 15px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+        g.fillText('DOOR 0' + (i + 1), x + boxW / 2, 776);
         x += boxW + gap;
       });
 
       g.fillStyle = 'rgba(126,230,255,.9)';
-      g.font = '600 30px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+      g.font = '600 28px ui-sans-serif, Segoe UI, system-ui, sans-serif';
       g.letterSpacing = '6px';
-      g.fillText('PAUSE  •  VERIFY  •  PROTECT', cx, 936);
+      g.fillText('PAUSE  •  VERIFY  •  PROTECT', cx, 865);
       g.letterSpacing = '0px';
 
       // signature block
       g.textAlign = 'left';
       g.strokeStyle = 'rgba(180,210,255,.35)'; g.lineWidth = 1;
-      g.beginPath(); g.moveTo(160, 1010); g.lineTo(620, 1010); g.stroke();
+      g.beginPath(); g.moveTo(160, 945); g.lineTo(620, 945); g.stroke();
       g.fillStyle = '#dceaff';
-      g.font = '600 26px ui-sans-serif, Segoe UI, system-ui, sans-serif';
-      g.fillText(C.author.name, 160, 1046);
+      g.font = '600 25px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+      g.fillText(C.author.name, 160, 980);
       g.fillStyle = 'rgba(170,200,235,.65)';
-      g.font = '400 19px ui-sans-serif, Segoe UI, system-ui, sans-serif';
-      g.fillText(C.author.role, 160, 1076);
+      g.font = '400 18px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+      g.fillText(C.author.role, 160, 1008);
 
       g.textAlign = 'right';
-      g.beginPath(); g.moveTo(W - 620, 1010); g.lineTo(W - 160, 1010); g.stroke();
+      g.beginPath(); g.moveTo(W - 620, 945); g.lineTo(W - 160, 945); g.stroke();
       g.fillStyle = '#dceaff';
-      g.font = '600 26px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+      g.font = '600 25px ui-sans-serif, Segoe UI, system-ui, sans-serif';
       const d = new Date();
-      g.fillText(d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }), W - 160, 1046);
+      g.fillText(d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }), W - 160, 980);
       g.fillStyle = 'rgba(170,200,235,.65)';
-      g.font = '400 19px ui-sans-serif, Segoe UI, system-ui, sans-serif';
-      g.fillText('Date of completion', W - 160, 1076);
+      g.font = '400 18px ui-sans-serif, Segoe UI, system-ui, sans-serif';
+      g.fillText('Date of completion', W - 160, 1008);
       g.textAlign = 'center';
     }
 
