@@ -20,6 +20,33 @@
     } catch (e) { return { modules: {}, labState: {}, name: '', phone: '', email: '', registered: false, exam: null }; }
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} }
+
+  /* ================= Google Sheets Webhook Sync ================= */
+  const DEFAULT_WEBHOOK_KEY = 'cybersmart_google_sheet_webhook';
+  function syncGoogleSheet(data) {
+    try {
+      const webhookUrl = localStorage.getItem(DEFAULT_WEBHOOK_KEY) || global.CYBERSMART_SHEET_WEBHOOK || '';
+      if (!webhookUrl) return;
+      const o = overall();
+      const payload = Object.assign({
+        course: 'Cyber Smart: AI-Powered Digital World',
+        name: P.name || '',
+        phone: P.phone || '',
+        email: P.email || '',
+        progress: o.p + '% (' + o.done + '/' + o.total + ' modules)',
+        score: P.exam != null ? P.exam + '%' : 'In Progress',
+        timestamp: new Date().toLocaleString('en-PK', { timeZone: 'Asia/Karachi' }),
+        isoDate: new Date().toISOString()
+      }, data);
+
+      fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    } catch (e) {}
+  }
   function mp(id) { return P.modules[id] || (P.modules[id] = { read: false, lab: null, quiz: null }); }
 
   function moduleDone(id) {
@@ -455,6 +482,13 @@
       const p = pct(correct, qs.length);
       const passed = p >= 75;
       P.exam = Math.max(P.exam || 0, p); save(); paintChrome();
+      if (passed) {
+        syncGoogleSheet({
+          event: 'EXAM_PASSED',
+          action: 'Final Assessment Completed',
+          status: 'Passed (' + p + '%)'
+        });
+      }
       const missed = answers.filter(a => !a.ok);
       clear(stage).append(h('div.exam-result.' + (passed ? 'good' : 'bad'),
         h('div.exam-score', h('b', p + '%'), h('span', correct + ' of ' + qs.length + ' correct')),
@@ -634,6 +668,11 @@
     function download() {
       canvas.toBlob((blob) => {
         if (!blob) return;
+        syncGoogleSheet({
+          event: 'CERTIFICATE_CLAIMED',
+          action: 'Certificate Claimed & Downloaded',
+          status: 'Certificate Issued'
+        });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -690,6 +729,11 @@
       P.email = email;
       P.registered = true;
       save();
+      syncGoogleSheet({
+        event: 'STUDENT_REGISTERED',
+        action: 'New Course Registration',
+        status: 'Course Started'
+      });
       location.hash = '#/';
       route();
     });

@@ -17,8 +17,13 @@ export default function AdminView() {
     resetDatabase 
   } = useAcademyStore();
 
-  const [activeSubTab, setActiveSubTab] = useState<'courses' | 'pathways' | 'profile' | 'api'>('courses');
+  const [activeSubTab, setActiveSubTab] = useState<'courses' | 'pathways' | 'profile' | 'api' | 'sheets'>('courses');
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
+
+  // --- Google Sheets Webhook State ---
+  const [sheetWebhookUrl, setSheetWebhookUrl] = useState(() => localStorage.getItem('cybersmart_google_sheet_webhook') || '');
+  const [isTestingWebhook, setIsTestingWebhook] = useState(false);
+  const [testWebhookResult, setTestWebhookResult] = useState<string | null>(null);
 
   // --- Course Form State ---
   const [courseTitle, setCourseTitle] = useState('');
@@ -46,6 +51,45 @@ export default function AdminView() {
   const [profileRank, setProfileRank] = useState(profile.rank);
   const [profileXp, setProfileXp] = useState(profile.xp);
   const [profileHours, setProfileHours] = useState(profile.studyHours);
+
+  const handleSaveWebhook = (e: React.FormEvent) => {
+    e.preventDefault();
+    localStorage.setItem('cybersmart_google_sheet_webhook', sheetWebhookUrl.trim());
+    triggerNotification("Google Sheets Webhook URL saved successfully!");
+  };
+
+  const handleTestWebhook = async () => {
+    if (!sheetWebhookUrl.trim()) {
+      setTestWebhookResult("⚠️ Please enter a Webhook URL first.");
+      return;
+    }
+    setIsTestingWebhook(true);
+    setTestWebhookResult(null);
+    try {
+      await fetch(sheetWebhookUrl.trim(), {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          course: 'Cyber Smart: AI-Powered Digital World',
+          event: 'TEST_CONNECTION',
+          name: 'Admin Test Student',
+          phone: '+92-333-3017333',
+          email: 'test@cyberaiacademy.com',
+          progress: '100% (Test)',
+          score: '100%',
+          status: 'Connection Verified',
+          timestamp: new Date().toLocaleString('en-PK', { timeZone: 'Asia/Karachi' }),
+          action: 'Webhook connection test from CyberAI Admin Panel'
+        })
+      });
+      setTestWebhookResult("✅ Test row sent to your Google Sheet! Check your spreadsheet.");
+    } catch (err: any) {
+      setTestWebhookResult(`❌ Error testing webhook: ${err.message || 'Check URL'}`);
+    } finally {
+      setIsTestingWebhook(false);
+    }
+  };
 
   const triggerNotification = (msg: string) => {
     setSuccessMsg(msg);
@@ -244,6 +288,16 @@ export default function AdminView() {
           }`}
         >
           <Terminal className="w-3.5 h-3.5" /> REST API Simulator Logs
+        </button>
+        <button
+          onClick={() => setActiveSubTab('sheets')}
+          className={`px-4 py-2 rounded text-xs font-semibold transition-all flex items-center gap-1.5 ${
+            activeSubTab === 'sheets' 
+              ? 'bg-[#002D62] text-white' 
+              : 'bg-slate-50 text-slate-650 hover:bg-slate-100 hover:text-slate-900 border border-slate-200'
+          }`}
+        >
+          📊 Google Sheets Sync
         </button>
       </section>
 
@@ -585,6 +639,79 @@ export default function AdminView() {
                     );
                   })
                 )}
+              </div>
+            </div>
+          )}
+
+          {/* TAB 5: GOOGLE SHEETS SYNC INTEGRATION */}
+          {activeSubTab === 'sheets' && (
+            <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <span className="text-xl">📊</span> Google Sheets Real-Time Sync
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Automatically record all student registrations, quiz scores, and certificate downloads to your own Google Sheet.
+                  </p>
+                </div>
+                <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  {sheetWebhookUrl ? '✓ Webhook Configured' : 'Setup Required'}
+                </span>
+              </div>
+
+              {/* Webhook Configuration Form */}
+              <form onSubmit={handleSaveWebhook} className="space-y-4">
+                <div className="space-y-1.5">
+                  <label className="font-bold text-xs text-slate-800 flex items-center justify-between">
+                    <span>Google Apps Script Webhook URL</span>
+                    <span className="text-[10px] text-slate-400 font-normal">Starts with https://script.google.com/...</span>
+                  </label>
+                  <input
+                    type="url"
+                    value={sheetWebhookUrl}
+                    onChange={(e) => setSheetWebhookUrl(e.target.value)}
+                    placeholder="https://script.google.com/macros/s/AKfycb.../exec"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs focus:outline-none focus:border-blue-500 font-mono text-slate-800"
+                  />
+                </div>
+
+                <div className="flex flex-wrap gap-2.5">
+                  <button
+                    type="submit"
+                    className="bg-[#002D62] hover:bg-[#001D42] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer"
+                  >
+                    💾 Save Webhook URL
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleTestWebhook}
+                    disabled={isTestingWebhook}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                  >
+                    {isTestingWebhook ? '⏳ Sending Test...' : '⚡ Test Connection (Send Ping)'}
+                  </button>
+                </div>
+
+                {testWebhookResult && (
+                  <div className={`p-3 rounded-xl text-xs font-medium ${testWebhookResult.startsWith('✅') ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-amber-50 text-amber-800 border border-amber-200'}`}>
+                    {testWebhookResult}
+                  </div>
+                )}
+              </form>
+
+              {/* Setup Guide Card */}
+              <div className="rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50/50 to-slate-50 p-5 space-y-3 text-left">
+                <h4 className="text-xs font-bold text-blue-950 flex items-center gap-1.5">
+                  <span>📖</span> 4-Step Google Sheet Setup Guide (Takes 2 Minutes)
+                </h4>
+                <ol className="list-decimal list-inside space-y-2 text-xs text-slate-600 leading-relaxed font-sans">
+                  <li>Open <strong><a href="https://sheets.new" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">sheets.new</a></strong> and create a new Google Sheet.</li>
+                  <li>Go to <strong>Extensions ➔ Apps Script</strong>.</li>
+                  <li>Paste the script from <code className="px-1.5 py-0.5 rounded bg-slate-200 text-slate-800 font-mono text-[10px]">GOOGLE_SHEETS_SETUP.md</code>.</li>
+                  <li>Click <strong>Deploy ➔ New deployment</strong>, select <strong>Web app</strong> (Execute as: <em>Me</em>, Who has access: <em>Anyone</em>), and paste the URL above.</li>
+                </ol>
               </div>
             </div>
           )}
