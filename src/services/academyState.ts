@@ -704,6 +704,38 @@ const INITIAL_COURSES: Course[] = [
       "Module 7: Metasploit Framework Exploitation & Payload Delivery",
       "Module 8: Wireless Network Hacking (WPA2/WPA3 Cracking)"
     ]
+  },
+
+  // --- CYBER SMART INTERACTIVE COURSE ---
+  {
+    id: 'cybersmart-ai',
+    title: 'Cyber Smart: Protecting Yourself in an AI-Powered Digital World',
+    category: 'Cybersecurity',
+    provider: 'CyberAI',
+    description: 'Interactive course on personal cyber security in the age of AI — covering mobile security, account protection, system hardening, social media safety, and responsible AI use. 13 modules, 12 hands-on labs, and a final assessment with downloadable certificate.',
+    difficulty: 'Beginner',
+    duration: '6 hours',
+    modulesCount: 13,
+    badgeName: 'Cyber Smart Guardian',
+    badgeColor: '#22D3EE',
+    enrollmentStatus: 'not_enrolled',
+    progress: 0,
+    imageUrl: '/cybersmart-course/assets/img/hero.webp',
+    syllabusOutline: [
+      "Module 00: One Device, Four Targets — Why your phone is the gateway to everything",
+      "Module 01: Your Private Baseline — Security self-check & personal threat model",
+      "Module 02: Secure the Device — Phone hardening simulator (Door 01: Mobile)",
+      "Module 03: Urgency Is the Signal — Inbox triage under pressure (Door 01: Mobile)",
+      "Module 04: Sign-in and Sessions — Session review & settings hunt (Door 02: Accounts)",
+      "Module 05: Email Is the Master Key — Build the master key (Door 02: Accounts)",
+      "Module 06: Boring and Recoverable — Expected sender, expected file (Door 03: Systems)",
+      "Module 07: Privacy and Exposure — Exposure control panel (Door 04: Social)",
+      "Module 08: Your Profile Is a Research File — Read the profile like an attacker (Door 04: Social)",
+      "Module 09: Assistant, Not a Vault — Redact before you paste (Door 05: AI)",
+      "Module 10: Confidence Is Not Evidence — Audit the confident answer (Door 05: AI)",
+      "Module 11: When Something Goes Wrong — The first ten minutes (Response)",
+      "Module 12: The 10-Minute Reset — Ten-action reset with timer (Response)"
+    ]
   }
 ];
 

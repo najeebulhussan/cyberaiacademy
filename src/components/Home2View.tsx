@@ -222,6 +222,113 @@ export default function Home2View({ onNavigateToTab }: Home2ViewProps) {
 
 
       {/* ════════════════════════════════════════════════════════════════ */}
+      {/* ★ FEATURED: CYBER SMART INTERACTIVE COURSE BANNER              */}
+      {/* ════════════════════════════════════════════════════════════════ */}
+      <section className="relative rounded-3xl overflow-hidden border border-cyan-200/60 shadow-xl bg-gradient-to-br from-[#050912] via-[#0b1a33] to-[#071525]">
+        <div className="absolute inset-0 bg-[url('/cybersmart-course/assets/img/hero.webp')] bg-cover bg-center opacity-15" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="relative z-10 grid lg:grid-cols-12 gap-8 p-8 md:p-12 items-center">
+          
+          {/* LEFT: Course Info */}
+          <div className="lg:col-span-7 space-y-5">
+            <div className="flex flex-wrap gap-2 items-center">
+              <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 uppercase tracking-widest">
+                ★ NEW INTERACTIVE COURSE
+              </span>
+              <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 border border-emerald-500/40 text-emerald-300">
+                FREE • 13 Modules • 12 Labs
+              </span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-white leading-tight tracking-tight">
+              Cyber Smart: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">AI-Powered</span> Digital Safety
+            </h2>
+
+            <p className="text-sm text-slate-300 leading-relaxed max-w-lg">
+              By <strong className="text-cyan-300">Najeeb ul Hassan</strong> (Focal Person & PRO, NCCIA). Learn to protect your phone, accounts, systems, social media and AI data with hands-on labs, quizzes, and a downloadable certificate.
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              {['📱 Mobile Security', '🔐 Account Protection', '💻 System Hardening', '🤖 AI Safety', '🛡️ Incident Response'].map((tag, i) => (
+                <span key={i} className="px-3 py-1.5 rounded-xl text-[10px] font-semibold bg-white/5 border border-white/10 text-slate-300">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a 
+                href="/cybersmart-course/index.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-7 py-3.5 rounded-xl font-bold text-xs shadow-lg shadow-cyan-500/25 inline-flex items-center gap-2 cursor-pointer transition-all hover:scale-105"
+              >
+                <Play className="w-4 h-4" /> Launch Interactive Course
+                <ExternalLink className="w-3.5 h-3.5 opacity-60" />
+              </a>
+              <button 
+                onClick={() => onNavigateToTab('programs')}
+                className="bg-white/10 hover:bg-white/15 text-white border border-white/20 px-6 py-3.5 rounded-xl font-bold text-xs inline-flex items-center gap-2 cursor-pointer transition-all"
+              >
+                View All Courses
+              </button>
+            </div>
+          </div>
+
+          {/* RIGHT: Course Visual Card */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-sm">
+              <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-gradient-to-b from-white/5 to-white/[0.02] backdrop-blur-sm">
+                <img 
+                  src="/cybersmart-course/assets/img/hero.webp" 
+                  alt="Cyber Smart Course" 
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-5 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+                      <Shield className="w-4 h-4 text-cyan-400" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-white">Cyber Smart</div>
+                      <div className="text-[10px] text-slate-400">AI-Powered Digital World</div>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { label: 'Modules', value: '13' },
+                      { label: 'Labs', value: '12' },
+                      { label: 'Duration', value: '~6hr' }
+                    ].map((stat, i) => (
+                      <div key={i} className="p-2 rounded-xl bg-white/5 border border-white/10 text-center">
+                        <div className="text-sm font-black text-cyan-400">{stat.value}</div>
+                        <div className="text-[9px] text-slate-500">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="text-[10px] text-slate-500 font-mono flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    Certificate on completion • Offline capable
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating badge */}
+              <div className="absolute -top-3 -right-3 z-20 px-3 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-[10px] font-extrabold shadow-lg border border-cyan-400/50">
+                🎓 FREE COURSE
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* ════════════════════════════════════════════════════════════════ */}
       {/* 2. OUR PROGRAMS SECTION - 5 VERTICAL GLASS CARDS                 */}
       {/* ════════════════════════════════════════════════════════════════ */}
       <section ref={reveal1} className="reveal space-y-8 text-center">
