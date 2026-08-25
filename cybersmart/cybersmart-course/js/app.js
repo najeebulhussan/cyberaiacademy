@@ -16,8 +16,8 @@
   function load() {
     try {
       const raw = JSON.parse(localStorage.getItem(KEY) || '{}');
-      return Object.assign({ modules: {}, labState: {}, name: '', exam: null }, raw);
-    } catch (e) { return { modules: {}, labState: {}, name: '', exam: null }; }
+      return Object.assign({ modules: {}, labState: {}, name: '', phone: '', email: '', registered: false, exam: null }, raw);
+    } catch (e) { return { modules: {}, labState: {}, name: '', phone: '', email: '', registered: false, exam: null }; }
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} }
   function mp(id) { return P.modules[id] || (P.modules[id] = { read: false, lab: null, quiz: null }); }
@@ -72,6 +72,15 @@
   function buildNav() {
     if (!navList) return;
     clear(navList);
+    if (P.registered && P.name) {
+      navList.appendChild(h('div.nav-group',
+        h('div.nav-group-h', 'Student Profile'),
+        h('div', { style: 'padding: 8px 12px; border-radius: 8px; background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2); margin-bottom: 10px;' },
+          h('div', { style: 'font-weight: 700; font-size: 12.5px; color: #7ee6ff; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;' }, `👤 ${P.name}`),
+          P.email ? h('div', { style: 'font-size: 10.5px; color: rgba(180,210,240,0.6); text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-top: 2px;' }, P.email) : null
+        )
+      ));
+    }
     C.tracks.forEach(tr => {
       const items = tr.modules.map(id => {
         const m = C.byId[id];
@@ -487,25 +496,31 @@
       return;
     }
 
-    const nameInput = h('input.cert-name-input', {
-      type: 'text', value: P.name || '', maxlength: '60',
-      placeholder: 'Your full name', autocomplete: 'name',
-      oninput: (e) => { P.name = e.target.value; save(); draw(); }
-    });
     const canvas = h('canvas.cert-canvas', { width: 1600, height: 1130 });
-    const dlBtn = btn('Download PNG', 'primary', download);
+    const dlBtn = btn('Download PNG Certificate', 'primary', download);
+
+    const studentCard = h('div', { style: 'padding:16px 20px;border-radius:12px;background:rgba(34,211,238,0.06);border:1px solid rgba(34,211,238,0.25);text-align:left;margin-bottom:14px;' },
+      h('div', { style: 'font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:#22d3ee;font-weight:700;margin-bottom:4px;' }, '✓ Verified Registered Recipient'),
+      h('div', { style: 'font-size:20px;font-weight:800;color:#ffffff;' }, P.name || 'Participant'),
+      h('div', { style: 'font-size:12px;color:rgba(180,210,240,0.7);margin-top:6px;display:flex;flex-wrap:wrap;gap:14px;' },
+        P.email ? h('span', `📧 ${P.email}`) : null,
+        P.phone ? h('span', `📞 ${P.phone}`) : null,
+        h('span', `🎯 Score: ${P.exam || 0}%`)
+      ),
+      h('div', { style: 'font-size:11px;color:rgba(140,180,220,0.45);margin-top:6px;' }, 'Certificate name is permanently verified from your initial course registration.')
+    );
 
     clear(app).append(h('div.cert-page',
       h('header.cert-head',
         h('div.cert-3d', badgeCanvas),
         h('div',
-          h('span.sec-kicker', 'Completed'),
-          h('h1', 'Your certificate'),
-          h('p', 'Enter the name you want on it, then download or print. Generated in your browser — nothing is uploaded.'))),
-      h('div.cert-controls', h('label', { for: 'certname' }, 'Name on certificate'), nameInput,
+          h('span.sec-kicker', 'Completed & Verified'),
+          h('h1', 'Your Official Certificate'),
+          h('p', 'Issued in the name of your verified registration. You can download the high-resolution PNG or print directly.'))),
+      h('div.cert-controls',
+        studentCard,
         h('div.hero-actions', dlBtn, btn('Print', 'ghost', () => global.print()))),
       h('div.cert-frame', canvas)));
-    nameInput.id = 'certname';
     track(global.Scenes.badge(badgeCanvas));
     draw();
 
@@ -631,11 +646,86 @@
     }
   }
 
+  /* ---------- registration gate ---------- */
+  function viewRegister() {
+    killScenes();
+    if (ambient) ambient.setTint('cyan');
+    const badgeCanvas = h('canvas.badge-canvas', { 'aria-hidden': 'true' });
+
+    const nameInput = h('input.cert-name-input', {
+      type: 'text', value: '', maxlength: '60',
+      placeholder: 'Full Name (as it will appear on your certificate)',
+      autocomplete: 'name', required: 'true'
+    });
+    const phoneInput = h('input.cert-name-input', {
+      type: 'tel', value: '', maxlength: '20',
+      placeholder: 'Phone Number (e.g. +92-333-XXXXXXX)',
+      autocomplete: 'tel', required: 'true'
+    });
+    const emailInput = h('input.cert-name-input', {
+      type: 'email', value: '', maxlength: '80',
+      placeholder: 'Email Address',
+      autocomplete: 'email', required: 'true'
+    });
+
+    const errMsg = h('div.callout.warn', { style: 'display:none;margin-top:12px' },
+      h('p', 'Please fill in all three fields to continue.'));
+
+    const regBtn = btn('Register & Start Course →', 'primary', () => {
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const email = emailInput.value.trim();
+      if (!name || !phone || !email) {
+        errMsg.style.display = 'block';
+        return;
+      }
+      // basic email check
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errMsg.querySelector('p').textContent = 'Please enter a valid email address.';
+        errMsg.style.display = 'block';
+        return;
+      }
+      P.name = name;
+      P.phone = phone;
+      P.email = email;
+      P.registered = true;
+      save();
+      location.hash = '#/';
+      route();
+    });
+
+    const formFields = h('div', { style: 'display:flex;flex-direction:column;gap:16px;max-width:480px;margin:0 auto' },
+      h('label', { style: 'display:flex;flex-direction:column;gap:6px;text-align:left;color:rgba(180,210,240,.85);font-size:13px;font-weight:600' },
+        '📝 Full Name *', h('span', { style: 'font-size:11px;font-weight:400;color:rgba(140,180,220,.5)' }, 'This name will appear on your certificate'), nameInput),
+      h('label', { style: 'display:flex;flex-direction:column;gap:6px;text-align:left;color:rgba(180,210,240,.85);font-size:13px;font-weight:600' },
+        '📞 Phone Number *', phoneInput),
+      h('label', { style: 'display:flex;flex-direction:column;gap:6px;text-align:left;color:rgba(180,210,240,.85);font-size:13px;font-weight:600' },
+        '📧 Email Address *', emailInput),
+      errMsg);
+
+    clear(app).append(h('div.gate',
+      h('div.gate-3d', badgeCanvas),
+      h('span.hero-eyebrow', 'Interactive course · 13 modules · 12 labs'),
+      h('h1', 'Welcome to Cyber Smart'),
+      h('p', 'Protecting Yourself in an AI-Powered Digital World'),
+      h('p', { style: 'margin-top:8px;color:rgba(160,200,240,.65);font-size:14px' },
+        'Please register below to start the course. Your name will be printed on your certificate upon completion.'),
+      formFields,
+      h('div.hero-actions', { style: 'margin-top:20px' }, regBtn),
+      h('p', { style: 'margin-top:16px;color:rgba(140,180,220,.35);font-size:11px' },
+        'Your data is stored only in this browser. Nothing is uploaded.')));
+    track(global.Scenes.badge(badgeCanvas));
+  }
+
   /* ================= router ================= */
   function route() {
     const hash = location.hash || '#/';
     const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean);
     document.body.classList.remove('nav-open');
+
+    // Registration gate: must register before accessing any course content
+    if (!P.registered) { viewRegister(); paintChrome(); global.scrollTo({ top: 0, behavior: 'auto' }); return; }
+
     if (!parts.length) viewHome();
     else if (parts[0] === 'm' && parts[1]) viewModule(parts[1]);
     else if (parts[0] === 'exam') viewExam();
