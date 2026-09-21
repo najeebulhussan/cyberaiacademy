@@ -162,35 +162,53 @@ export default function CourseCatalogView({ onNavigateToTab, initialCategory = '
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
         {filteredCourses.map((course, idx) => {
           const difficultyColor = course.difficulty === 'Beginner' ? 'bg-emerald-500' : course.difficulty === 'Intermediate' ? 'bg-[#007A87]' : 'bg-amber-500';
-          
+          const categoryBorder = 
+            course.category === 'Networking' ? 'border-t-[#007A87]' :
+            course.category === 'Cybersecurity' ? 'border-t-purple-600' :
+            course.category === 'Programming' ? 'border-t-amber-500' :
+            course.category === 'Automation' ? 'border-t-sky-500' :
+            course.category === 'Operating Systems' ? 'border-t-rose-600' : 'border-t-emerald-500';
+
           return (
             <div 
               key={course.id}
               onClick={() => setSelectedCourse(course)}
-              className="nhiit-glass-card group rounded-3xl overflow-hidden cursor-pointer flex flex-col justify-between animate-slide-up hover:-translate-y-1.5 transition-all duration-300"
+              className={`nhiit-glass-card group rounded-3xl overflow-hidden cursor-pointer flex flex-col justify-between animate-slide-up hover:-translate-y-1.5 transition-all duration-300 border-t-4 ${categoryBorder}`}
               style={{ animationDelay: `${(idx % 6) * 0.06}s` }}
             >
               <div>
                 {/* Thumbnail Header Image */}
                 <div 
-                  className="h-44 bg-cover bg-center p-4 flex justify-between items-start relative overflow-hidden"
+                  className="h-48 bg-cover bg-center p-4 flex flex-col justify-between items-start relative overflow-hidden"
                   style={{ backgroundImage: `url(${course.imageUrl})` }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-black/30 to-black/20" />
                   
-                  <span className={`relative z-10 px-3 py-1 rounded-lg text-[9px] font-extrabold text-white font-sans tracking-wider uppercase ${difficultyColor} shadow-md`}>
-                    {course.difficulty}
-                  </span>
+                  {/* Top Bar with Cisco Badge & Difficulty */}
+                  <div className="relative z-10 flex items-center justify-between w-full">
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/95 text-slate-900 text-[10px] font-black shadow-md backdrop-blur-md">
+                      <span className="tracking-tighter text-[#007A87] font-black font-mono">CISCO</span>
+                      <span className="text-slate-600 font-bold">{course.provider === 'NetAcad' ? 'NetAcad' : course.provider}</span>
+                    </div>
 
-                  <span className="relative z-10 px-2.5 py-1 rounded-lg text-[9px] font-mono font-bold bg-white/90 text-slate-800 shadow-sm backdrop-blur-md">
-                    {course.provider === 'NetAcad' ? 'NetAcad Official' : course.provider === 'CyberAI' ? 'CyberAI Lab' : 'Hybrid Lab'}
-                  </span>
+                    <span className={`px-2.5 py-1 rounded-lg text-[9px] font-extrabold text-white font-sans tracking-wider uppercase ${difficultyColor} shadow-md`}>
+                      {course.difficulty}
+                    </span>
+                  </div>
+
+                  {/* Bottom Image Overlay Details */}
+                  <div className="relative z-10 flex items-center justify-between w-full text-[10px] text-white/90">
+                    <span className="font-mono font-bold bg-black/60 px-2 py-0.5 rounded-md backdrop-blur-md flex items-center gap-1 border border-white/10">
+                      <Award className="w-3 h-3 text-amber-400" />
+                      <span>{course.badgeName || 'W3C Open Badge'}</span>
+                    </span>
+                  </div>
                 </div>
 
                 {/* Body Content */}
                 <div className="p-6 space-y-3 text-left">
                   <div className="flex items-center justify-between text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">
-                    <span>{course.category}</span>
+                    <span className="text-[#007A87] font-bold">{course.category}</span>
                     <span>{course.modulesCount} Modules</span>
                   </div>
 
