@@ -66,7 +66,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'completed',
     progress: 100,
-    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Chapter 1: Networking Today & Global Connections",
       "Chapter 2: Basic Switch and End Device Configuration",
@@ -100,7 +100,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00FF87',
     enrollmentStatus: 'in_progress',
     progress: 45,
-    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Chapter 1: Basic Device Configuration & Port Settings",
       "Chapter 2: Switching Concepts & MAC Address Tables",
@@ -132,7 +132,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF9F00',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Chapter 1: Single-Area OSPFv2 Concepts",
       "Chapter 2: Single-Area OSPFv2 Configuration",
@@ -163,7 +163,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'in_progress',
     progress: 30,
-    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1520869562399-e772f342b00a?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: Communications in a Connected World",
       "Module 2: Network Components & Connections",
@@ -189,7 +189,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF007F',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Chapter 1: Standard OSI & TCP/IP Model layers",
       "Chapter 2: Physical Network Connections & Media",
@@ -217,7 +217,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00A854',
     enrollmentStatus: 'completed',
     progress: 100,
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: The Global Need for Cybersecurity Shielding",
       "Module 2: Attacker Tactics, Malware types, and Vulnerabilities",
@@ -239,7 +239,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#7F00FF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: Cybersecurity Concepts & The Cybersecurity Cube",
       "Module 2: Malware threats, Trojan Vectors, and Countermeasures",
@@ -264,7 +264,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: CIA Triad & Core Security Principles",
       "Module 2: Network threats, DDoS Vectors, and Spoofing Attacks",
@@ -288,7 +288,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'in_progress',
     progress: 45,
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: Danger Threat actor tactics and malware classifications",
       "Module 2: Windows Operating System Security & Audit Logging",
@@ -313,7 +313,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00FF87',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: Defense-in-Depth network designs",
       "Module 2: Hardening Switch configurations & VLAN safety",
@@ -340,7 +340,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF9F00',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Chapter 1: Python environment installation and basics",
       "Chapter 2: Data types, Variables, Operators, and Console I/O",
@@ -361,7 +361,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#B24FFF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Chapter 1: Modules, Packages, and PIP package manager",
       "Chapter 2: Advanced Strings, Tuples, Dictionaries, and Lists",
@@ -382,7 +382,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1579468118864-ddab3a7101e8?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: JavaScript in the Browser & Execution Engines",
       "Module 2: Variables, Scopes, Constants, and Primitive types",
@@ -406,7 +406,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#7F00FF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: Git Version Control and Collaboration workflows",
       "Module 2: REST APIs, HTTP protocols, headers, and status codes",
@@ -429,7 +429,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF9F00',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1618401471353-b98aedd04e11?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: Introduction to Network Programmability",
       "Module 2: Python Paramiko and Netmiko script routines",
@@ -454,7 +454,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00FF87',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: What is IoT and Digital Transformation concepts",
       "Module 2: Hardware sensors, controllers (Arduino & Raspberry Pi)",
@@ -474,7 +474,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF007F',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: Introduction to Data Analysis lifecycle",
       "Module 2: Working with data tables, columns, and CSV formats",
@@ -499,7 +499,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#7F00FF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Chapter 1: Linux Tux history and shell environment",
       "Chapter 2: Folder navigation commands (ls, cd, pwd)",
@@ -520,7 +520,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Chapter 1: Selecting a Linux distro & kernel versions",
       "Chapter 2: Bash Shell variables and CLI controls",
@@ -544,7 +544,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF9F00',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1588508065123-287b28e013da?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Chapter 1: Hardware components (Motherboard, RAM, CPU, Storage)",
       "Chapter 2: System building & ESD anti-static safety",
@@ -569,7 +569,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#002D62',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: Dual-Stack Architecture (IPv4 & IPv6 Core Routing)",
       "Module 2: Advanced Single & Multi-Area OSPFv3 Operations",
@@ -594,7 +594,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#CC0000',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1597852074816-d933c4d2b988?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: RHEL Installation & Command Line Shell Mastery",
       "Module 2: User & Group Management with Password Policies",
@@ -619,7 +619,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF9900',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: AWS Global Infrastructure & Cloud Architecture Principles",
       "Module 2: Identity & Access Management (IAM) Policies & Roles",
@@ -644,7 +644,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: Git Distributed Version Control & Feature Branch Workflows",
       "Module 2: Dockerfile Creation, Image Optimization & Container Networking",
@@ -669,7 +669,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#CC0000',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: FortiGate Architecture, Deployment Modes & System Settings",
       "Module 2: Firewall Security Policies, NAT & Port Forwarding",
@@ -694,7 +694,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#7F00FF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80',
     syllabusOutline: [
       "Module 1: Footprinting, OSINT Reconnaissance & Social Engineering",
       "Module 2: Nmap Network Scanning, Port Audits & OS Fingerprinting",
@@ -828,9 +828,21 @@ class AcademyStore {
 
   private loadFromStorage() {
     try {
-      this.courses = localStorage.getItem('netacad_courses') 
-        ? JSON.parse(localStorage.getItem('netacad_courses')!) 
-        : INITIAL_COURSES;
+      if (localStorage.getItem('netacad_courses')) {
+        const stored: Course[] = JSON.parse(localStorage.getItem('netacad_courses')!);
+        const storedMap = new Map(stored.map(c => [c.id, c]));
+        this.courses = INITIAL_COURSES.map(initC => {
+          const s = storedMap.get(initC.id);
+          if (!s) return initC;
+          return {
+            ...initC,
+            enrollmentStatus: s.enrollmentStatus || initC.enrollmentStatus,
+            progress: s.progress ?? initC.progress
+          };
+        });
+      } else {
+        this.courses = INITIAL_COURSES;
+      }
 
       this.badges = localStorage.getItem('netacad_badges') 
         ? JSON.parse(localStorage.getItem('netacad_badges')!) 
