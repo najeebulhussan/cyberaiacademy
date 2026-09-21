@@ -13,12 +13,13 @@ import AdmissionModal from '@/components/AdmissionModal';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
 import AdminAuthModal from '@/components/AdminAuthModal';
 import CertificateVerifierModal from '@/components/CertificateVerifierModal';
-import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone, Lock, ShieldCheck, Layers, Info, Calendar, Mail, Sparkles } from 'lucide-react';
+import InteractiveLabsHub from '@/components/InteractiveLabsHub';
+import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone, Lock, ShieldCheck, Layers, Info, Calendar, Mail, Sparkles, Activity } from 'lucide-react';
 import { useAcademyStore } from '@/services/academyState';
 
 export default function App() {
   const { profile } = useAcademyStore();
-  const [activeTab, setActiveTab] = useState<'explore' | 'home2' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('home2');
+  const [activeTab, setActiveTab] = useState<'explore' | 'home2' | 'programs' | 'labs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('home2');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
   const [isAdminAuthOpen, setIsAdminAuthOpen] = useState(false);
@@ -32,7 +33,7 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['explore', 'home2', 'programs', 'about', 'admissions', 'contact', 'learning', 'player', 'tutor', 'badges', 'admin'].includes(hash)) {
+      if (['explore', 'home2', 'programs', 'labs', 'about', 'admissions', 'contact', 'learning', 'player', 'tutor', 'badges', 'admin'].includes(hash)) {
         if (hash === 'admin' && !isAdminAuthenticated) {
           setIsAdminAuthOpen(true);
         } else {
@@ -49,7 +50,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [isAdminAuthenticated]);
 
-  const handleSetTab = (tab: 'explore' | 'home2' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => {
+  const handleSetTab = (tab: 'explore' | 'home2' | 'programs' | 'labs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => {
     if (tab === 'admin' && !isAdminAuthenticated) {
       setIsAdminAuthOpen(true);
       return;
@@ -174,6 +175,16 @@ export default function App() {
               <Layers className="w-3.5 h-3.5 text-[#007A87]" /> Courses & Programs
             </button>
             <button 
+              onClick={() => handleSetTab('labs')}
+              className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+                activeTab === 'labs' 
+                  ? 'text-[#005073] bg-[#005073]/10 font-bold' 
+                  : activeTheme === 'theme2' ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-50' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              <Activity className="w-3.5 h-3.5 text-cyan-500" /> Interactive Labs
+            </button>
+            <button 
               onClick={() => handleSetTab('admissions')}
               className={`px-2.5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                 activeTab === 'admissions' 
@@ -264,6 +275,14 @@ export default function App() {
               <Layers className="w-4 h-4 text-[#007A87]" /> Courses & Programs
             </button>
             <button 
+              onClick={() => handleSetTab('labs')}
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
+                activeTab === 'labs' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              <Activity className="w-4 h-4 text-cyan-500" /> Interactive Labs
+            </button>
+            <button 
               onClick={() => handleSetTab('admissions')}
               className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 ${
                 activeTab === 'admissions' ? 'bg-[#005073]/10 text-[#005073]' : 'text-slate-700 hover:bg-slate-50'
@@ -323,6 +342,7 @@ export default function App() {
         {activeTab === 'home2' && <Home2View onNavigateToTab={handleSetTab} />}
         {activeTab === 'explore' && <Home2View onNavigateToTab={handleSetTab} />}
         {activeTab === 'programs' && <CourseCatalogView onNavigateToTab={handleSetTab} />}
+        {activeTab === 'labs' && <InteractiveLabsHub onNavigateToTab={handleSetTab} />}
         {activeTab === 'about' && <AboutUsView />}
         {activeTab === 'admissions' && <AdmissionsView />}
         {activeTab === 'contact' && <ContactView />}

@@ -5,11 +5,11 @@ import AdmissionModal from '@/components/AdmissionModal';
 import { 
   Shield, Cpu, Award, Clock, ArrowRight, Play, CheckCircle2, 
   Server, Terminal, Cloud, Lock, Users, Layers, ExternalLink, 
-  BookOpen, Sparkles, MapPin, ChevronRight, FileText
+  BookOpen, Sparkles, MapPin, ChevronRight, FileText, Activity, Network, TrendingUp
 } from 'lucide-react';
 
 interface Home2ViewProps {
-  onNavigateToTab: (tab: 'explore' | 'home2' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => void;
+  onNavigateToTab: (tab: 'explore' | 'home2' | 'programs' | 'labs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => void;
 }
 
 export default function Home2View({ onNavigateToTab }: Home2ViewProps) {
@@ -84,6 +84,14 @@ export default function Home2View({ onNavigateToTab }: Home2ViewProps) {
               >
                 <span>Explore All Programs</span>
                 <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <button 
+                onClick={() => onNavigateToTab('labs')}
+                className="bg-gradient-to-r from-[#007A87] to-emerald-600 hover:from-[#005073] hover:to-emerald-700 text-white px-6 py-3.5 rounded-xl font-bold text-xs shadow-lg shadow-cyan-500/20 flex items-center gap-2 cursor-pointer transition-all hover:scale-105"
+              >
+                <Activity className="w-4 h-4 text-cyan-200 animate-pulse" />
+                <span>Interactive Labs</span>
               </button>
 
               <button 
@@ -448,6 +456,100 @@ export default function Home2View({ onNavigateToTab }: Home2ViewProps) {
         </div>
       </section>
 
+      {/* ════════════════════════════════════════════════════════════════ */}
+      {/* 3.5 INTERACTIVE LABS & PACKET SIMULATOR SHOWCASE               */}
+      {/* ════════════════════════════════════════════════════════════════ */}
+      <section className="bg-gradient-to-br from-slate-900 via-slate-950 to-[#002D62] text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-2xl relative overflow-hidden space-y-8 text-left">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+          <div className="space-y-2 max-w-2xl">
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/40 uppercase tracking-wider inline-flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-300" /> Virtualized Campus Labs
+              </span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 inline-flex items-center gap-1.5">
+                <Activity className="w-3.5 h-3.5 text-emerald-400 animate-pulse" /> Live Hardware Telemetry
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-white tracking-tight">
+              Test Real Cisco Hardware & Cyber Defense in Your Browser
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              No software installation required. Practice on our interactive packet tracer, calculate IPv4/IPv6 subnets, neutralize live simulated cyberattacks, and calculate your target career salary.
+            </p>
+          </div>
+
+          <div className="shrink-0">
+            <button
+              onClick={() => onNavigateToTab('labs')}
+              className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-accentCyan to-[#007A87] hover:brightness-110 text-slate-950 font-bold text-xs shadow-xl flex items-center gap-2 cursor-pointer transition-all hover:scale-105"
+            >
+              <Activity className="w-4 h-4 text-slate-950" />
+              <span>Explore Interactive Labs Hub</span>
+              <ArrowRight className="w-4 h-4 text-slate-950" />
+            </button>
+          </div>
+        </div>
+
+        {/* 4 Feature Preview Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
+          {[
+            {
+              title: "Visual Packet Tracer",
+              desc: "Simulate live ICMP ping flows across Cisco 4331 routers and Catalyst switches with OSI packet inspection.",
+              icon: Network,
+              badge: "Cisco IOS Simulator",
+              color: "text-cyan-400 bg-cyan-400/10 border-cyan-400/20"
+            },
+            {
+              title: "Subnetting Ninja",
+              desc: "Calculate network IDs, wildcard masks, and binary bit boundaries with the 60-second speed challenge.",
+              icon: Cpu,
+              badge: "CIDR /8 to /30",
+              color: "text-amber-400 bg-amber-400/10 border-amber-400/20"
+            },
+            {
+              title: "SOC Cyber Threat Matrix",
+              desc: "Neutralize simulated volumetric DDoS, SSH brute-force incursions, and ransomware lateral movement.",
+              icon: Shield,
+              badge: "Live SIEM Mitigation",
+              color: "text-red-400 bg-red-400/10 border-red-400/20"
+            },
+            {
+              title: "Career ROI Calculator",
+              desc: "Explore structured roadmaps for CCNA, CyberOps, Cloud, and Linux with verified global salary benchmarks.",
+              icon: TrendingUp,
+              badge: "PKR, AED & USD",
+              color: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20"
+            }
+          ].map((card, cIdx) => {
+            const Icon = card.icon;
+            return (
+              <div
+                key={cIdx}
+                onClick={() => onNavigateToTab('labs')}
+                className="p-5 rounded-3xl bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-cyan-500/40 transition-all hover:-translate-y-1 cursor-pointer space-y-3 group shadow-lg"
+              >
+                <div className="flex items-center justify-between">
+                  <div className={`p-2.5 rounded-2xl ${card.color} border`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded-full border border-slate-700">
+                    {card.badge}
+                  </span>
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-display font-extrabold text-sm text-white group-hover:text-cyan-300 transition-colors">
+                    {card.title}
+                  </h3>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    {card.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
       {/* ════════════════════════════════════════════════════════════════ */}
       {/* 4. WHY CHOOSE NETWORK HOME SECTION                               */}
