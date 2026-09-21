@@ -14,11 +14,12 @@ import WhatsAppWidget from '@/components/WhatsAppWidget';
 import AdminAuthModal from '@/components/AdminAuthModal';
 import CertificateVerifierModal from '@/components/CertificateVerifierModal';
 import InteractiveLabsHub from '@/components/InteractiveLabsHub';
+import StudentLmsView from '@/components/StudentLmsView';
 import { Shield, BookOpen, User, Cpu, ExternalLink, Menu, X, Search, Globe, Bell, HelpCircle, Grid, ChevronDown, MapPin, Phone, Lock, ShieldCheck, Layers, Info, Calendar, Mail, Sparkles, Activity } from 'lucide-react';
 import { useAcademyStore } from '@/services/academyState';
 
 export default function App() {
-  const { profile } = useAcademyStore();
+  const { profile, activeStudent } = useAcademyStore();
   const [activeTab, setActiveTab] = useState<'explore' | 'home2' | 'programs' | 'labs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin'>('home2');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
@@ -85,6 +86,16 @@ export default function App() {
         </div>
         
         <div className="flex items-center gap-2.5">
+          {/* Active Student LMS Badge */}
+          <button
+            onClick={() => handleSetTab('learning')}
+            className="bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded text-[11px] font-sans font-bold transition-all flex items-center gap-1.5 cursor-pointer border border-white/20"
+            title="Open Student LMS Portal"
+          >
+            <User className="w-3 h-3 text-cyan-300" />
+            <span>Student: {activeStudent.name.split(' ')[0]} ({activeStudent.rollNumber})</span>
+          </button>
+
           {/* Admin Login / Online Status Indicator */}
           {isAdminAuthenticated ? (
             <div className="flex items-center gap-1 bg-emerald-500/20 border border-emerald-400/40 px-2 py-0.5 rounded-lg text-[11px] font-bold text-emerald-300">
@@ -346,8 +357,8 @@ export default function App() {
         {activeTab === 'about' && <AboutUsView />}
         {activeTab === 'admissions' && <AdmissionsView />}
         {activeTab === 'contact' && <ContactView />}
-        {activeTab === 'learning' && <DashboardView />}
-        {activeTab === 'player' && <LmsView />}
+        {activeTab === 'learning' && <StudentLmsView onNavigateToTab={handleSetTab} defaultSubTab="courses" />}
+        {activeTab === 'player' && <StudentLmsView onNavigateToTab={handleSetTab} defaultSubTab="classroom" />}
         {activeTab === 'tutor' && <MentorView />}
         {activeTab === 'badges' && <BadgesView />}
         {activeTab === 'admin' && (isAdminAuthenticated ? <AdminView /> : <Home2View onNavigateToTab={handleSetTab} />)}

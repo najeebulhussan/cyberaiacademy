@@ -68,6 +68,25 @@ export interface StudentRosterItem {
   status: 'Active' | 'Graduated' | 'On Leave';
   enrollmentDate: string;
   certificateId?: string;
+  batch?: string;
+  avatarUrl?: string;
+  gpa?: string;
+}
+
+export interface StudentAssignment {
+  id: string;
+  courseTitle: string;
+  title: string;
+  module: string;
+  dueDate: string;
+  maxPoints: number;
+  instructions: string;
+  starterTemplate?: string;
+  status: 'Pending' | 'Submitted' | 'Graded';
+  studentScore?: number;
+  submissionDate?: string;
+  submittedContent?: string;
+  feedback?: string;
 }
 
 export interface IssuedCertificate {
@@ -912,6 +931,62 @@ const INITIAL_STUDENTS: StudentRosterItem[] = [
   }
 ];
 
+
+export const INITIAL_ASSIGNMENTS: StudentAssignment[] = [
+  {
+    id: 'asg-ccna-01',
+    courseTitle: 'CCNA: Introduction to Networks (ITN)',
+    title: 'Lab 1: Router & Switch Initial Hardening',
+    module: 'Chapter 2: Basic Device Configuration',
+    dueDate: 'Sep 30, 2026',
+    maxPoints: 100,
+    instructions: 'Configure hostnames, secure console passwords with secret encryption, create banner MOTD, and configure management SVI VLAN 1 on Catalyst 2960.',
+    starterTemplate: 'enable\nconfigure terminal\nhostname Sw-Floor1\nenable secret cisco123\nline con 0\n password cisco\n login\nexit\ninterface vlan 1\n ip address 192.168.1.2 255.255.255.0\n no shutdown\nend',
+    status: 'Graded',
+    studentScore: 98,
+    submissionDate: 'Sep 15, 2026',
+    submittedContent: 'enable\nconfigure terminal\nhostname Sw-Floor1\nenable secret cisco123\nservice password-encryption\nbanner motd # AUTHORIZED PERSONNEL ONLY #\ninterface vlan 1\n ip address 192.168.1.2 255.255.255.0\n no shutdown\nexit\nip default-gateway 192.168.1.1\nend\nwrite memory',
+    feedback: 'Excellent configuration! Passwords properly encrypted, banner set, and default gateway established.'
+  },
+  {
+    id: 'asg-ccna-02',
+    courseTitle: 'CCNA: Introduction to Networks (ITN)',
+    title: 'Lab 2: IPv4 VLSM Subnetting Scheme',
+    module: 'Chapter 11: IPv4 Addressing & Subnetting',
+    dueDate: 'Oct 05, 2026',
+    maxPoints: 100,
+    instructions: 'Given the network address 192.168.10.0/24, create 4 subnets: Subnet A (60 hosts), Subnet B (30 hosts), Subnet C (12 hosts), and Subnet D (WAN point-to-point /30). Calculate network ID, subnet mask, usable host range, and broadcast address.',
+    starterTemplate: '# Subnet A (60 Hosts):\nNetwork: 192.168.10.0 / 26\nSubnet Mask:\nUsable Range:\nBroadcast:\n\n# Subnet B (30 Hosts):\n\n# Subnet C (12 Hosts):\n\n# Subnet D (WAN 2 Hosts):',
+    status: 'Submitted',
+    studentScore: 95,
+    submissionDate: 'Sep 18, 2026',
+    submittedContent: '# Subnet A (60 Hosts): 192.168.10.0/26 (Mask: 255.255.255.192, Usable: 192.168.10.1 - 192.168.10.62, Bcast: 192.168.10.63)\n# Subnet B (30 Hosts): 192.168.10.64/27 (Mask: 255.255.255.224, Usable: 192.168.10.65 - 192.168.10.94, Bcast: 192.168.10.95)\n# Subnet C (12 Hosts): 192.168.10.96/28 (Mask: 255.255.255.240, Usable: 192.168.10.97 - 192.168.10.110, Bcast: 192.168.10.111)\n# Subnet D (WAN): 192.168.10.112/30 (Mask: 255.255.255.252, Usable: 192.168.10.113 - 192.168.10.114, Bcast: 192.168.10.115)',
+    feedback: 'Accurate VLSM allocations. Efficient address space utilization with zero overlapping.'
+  },
+  {
+    id: 'asg-ccna-03',
+    courseTitle: 'CCNA: Introduction to Networks (ITN)',
+    title: 'Lab 3: Inter-VLAN Routing (Router-on-a-Stick)',
+    module: 'Chapter 10: Basic Router Configuration',
+    dueDate: 'Oct 15, 2026',
+    maxPoints: 100,
+    instructions: 'Configure 802.1Q sub-interfaces on Cisco 4331 Router for VLAN 10 (Sales) and VLAN 20 (Engineering) with appropriate encapsulation and IP addresses.',
+    starterTemplate: 'interface GigabitEthernet0/0/0.10\n encapsulation dot1Q 10\n ip address 192.168.10.1 255.255.255.0\n!\ninterface GigabitEthernet0/0/0.20\n encapsulation dot1Q 20\n ip address 192.168.20.1 255.255.255.0\n!\ninterface GigabitEthernet0/0/0\n no shutdown',
+    status: 'Pending'
+  },
+  {
+    id: 'asg-cyber-01',
+    courseTitle: 'Cisco CyberOps Associate',
+    title: 'Lab 4: Wireshark Packet Capture & PCAP Forensics',
+    module: 'Module 7: Security Monitoring & SIEM',
+    dueDate: 'Oct 20, 2026',
+    maxPoints: 100,
+    instructions: 'Analyze suspicious network traffic in the provided PCAP capture. Identify the malicious IP, detect the port scanning technique, and reconstruct the unencrypted credential leak.',
+    starterTemplate: '# Threat Incident Analysis Report\nAttacker IP Address: \nAttack Signature (SYN flood / FIN scan / Null scan): \nCompromised Protocol & Port: \nExfiltrated Credentials / Data: \nRecommended Firewall Rule / Remediation: ',
+    status: 'Pending'
+  }
+];
+
 const INITIAL_CERTIFICATES: IssuedCertificate[] = [
   {
     id: 'NHIIT-CCNA-2026-8841',
@@ -951,6 +1026,8 @@ class AcademyStore {
   private pathways: Pathway[] = [];
   private students: StudentRosterItem[] = [];
   private certificates: IssuedCertificate[] = [];
+  private activeStudentId: string = 'std-101';
+  private assignments: StudentAssignment[] = INITIAL_ASSIGNMENTS;
   private chatLogs: { sender: 'user' | 'mentor'; text: string; time: string }[] = [
     { sender: 'mentor', text: 'Hello Alex! I am your CyberAI Mentor. How can I help you master your cybersecurity or automation studies today?', time: '20:52' },
   ];
@@ -1003,6 +1080,10 @@ class AcademyStore {
         ? JSON.parse(localStorage.getItem('netacad_students')!)
         : INITIAL_STUDENTS;
 
+      this.activeStudentId = localStorage.getItem('cyberai_active_student_id') || 'std-101';
+      this.assignments = localStorage.getItem('netacad_assignments')
+        ? JSON.parse(localStorage.getItem('netacad_assignments')!)
+        : INITIAL_ASSIGNMENTS;
       this.certificates = localStorage.getItem('netacad_certificates')
         ? JSON.parse(localStorage.getItem('netacad_certificates')!)
         : INITIAL_CERTIFICATES;
@@ -1026,6 +1107,8 @@ class AcademyStore {
       localStorage.setItem('netacad_pathways', JSON.stringify(this.pathways));
       localStorage.setItem('netacad_students', JSON.stringify(this.students));
       localStorage.setItem('netacad_certificates', JSON.stringify(this.certificates));
+      localStorage.setItem('cyberai_active_student_id', this.activeStudentId);
+      localStorage.setItem('netacad_assignments', JSON.stringify(this.assignments));
     } catch (e) {
       console.error("Storage save failed:", e);
     }
@@ -1304,6 +1387,50 @@ class AcademyStore {
     return null;
   }
 
+  
+  getActiveStudentId(): string {
+    return this.activeStudentId;
+  }
+
+  getActiveStudent(): StudentRosterItem {
+    return this.students.find(s => s.id === this.activeStudentId) || this.students[0] || INITIAL_STUDENTS[0];
+  }
+
+  setActiveStudentId(id: string) {
+    this.activeStudentId = id;
+    this.saveToStorage();
+    this.logApiRequest('PUT', `/api/v1/students/switch/${id}`, 200);
+    this.notify();
+  }
+
+  getAssignments(): StudentAssignment[] {
+    return this.assignments;
+  }
+
+  submitAssignment(assignmentId: string, content: string) {
+    this.assignments = this.assignments.map(asg => {
+      if (asg.id === assignmentId) {
+        const earned = Math.floor(Math.random() * 8) + 92;
+        return {
+          ...asg,
+          status: 'Submitted',
+          submissionDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+          submittedContent: content,
+          studentScore: earned,
+          feedback: 'Automated Rubric Validation: Configuration syntax complies with Cisco standard specifications. 0 syntax or security policy violations.'
+        };
+      }
+      return asg;
+    });
+    this.saveToStorage();
+    this.logApiRequest('POST', `/api/v1/assignments/${assignmentId}/submit`, 201);
+    this.notify();
+  }
+
+  markLessonCompleted(courseId: string, chapterIndex: number) {
+    this.updateProgress(courseId, 10);
+  }
+
   resetDatabase() {
     this.courses = INITIAL_COURSES;
     this.badges = INITIAL_BADGES;
@@ -1328,6 +1455,8 @@ export function useAcademyStore() {
   const [certificates, setCertificates] = useState<IssuedCertificate[]>(academyStore.getCertificates());
   const [chatLogs, setChatLogs] = useState(academyStore.getChatLogs());
   const [apiLogs, setApiLogs] = useState(academyStore.apiLogs);
+  const [activeStudentId, setActiveStudentIdState] = useState(academyStore.getActiveStudentId());
+  const [assignments, setAssignments] = useState<StudentAssignment[]>(academyStore.getAssignments());
 
   useEffect(() => {
     const unsubscribe = academyStore.subscribe(() => {
@@ -1339,6 +1468,8 @@ export function useAcademyStore() {
       setCertificates(academyStore.getCertificates());
       setChatLogs(academyStore.getChatLogs());
       setApiLogs([...academyStore.apiLogs]);
+      setActiveStudentIdState(academyStore.getActiveStudentId());
+      setAssignments(academyStore.getAssignments());
     });
     return () => {
       unsubscribe();
@@ -1381,5 +1512,16 @@ export function useAcademyStore() {
     issueCertificate: (cert: IssuedCertificate) => academyStore.issueCertificate(cert),
     revokeCertificate: (certId: string) => academyStore.revokeCertificate(certId),
     verifyCertificate: (certId: string) => academyStore.verifyCertificate(certId),
+
+    // Active Student Session & LMS
+    activeStudentId,
+    activeStudent: students.find(s => s.id === activeStudentId) || students[0],
+    assignments,
+    setActiveStudentId: (id: string) => {
+      academyStore.setActiveStudentId(id);
+      setActiveStudentIdState(id);
+    },
+    submitAssignment: (asgId: string, content: string) => academyStore.submitAssignment(asgId, content),
+    markLessonCompleted: (courseId: string, chIdx: number) => academyStore.markLessonCompleted(courseId, chIdx),
   };
 }
