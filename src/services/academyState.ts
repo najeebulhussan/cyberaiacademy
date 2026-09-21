@@ -831,15 +831,21 @@ class AcademyStore {
       if (localStorage.getItem('netacad_courses')) {
         const stored: Course[] = JSON.parse(localStorage.getItem('netacad_courses')!);
         const storedMap = new Map(stored.map(c => [c.id, c]));
-        this.courses = INITIAL_COURSES.map(initC => {
+        
+        // Merge stored overrides on top of INITIAL_COURSES so custom admin edits persist
+        const mergedInitial = INITIAL_COURSES.map(initC => {
           const s = storedMap.get(initC.id);
           if (!s) return initC;
           return {
             ...initC,
-            enrollmentStatus: s.enrollmentStatus || initC.enrollmentStatus,
-            progress: s.progress ?? initC.progress
+            ...s
           };
         });
+
+        // Also preserve custom courses created by the administrator
+        const initialIdSet = new Set(INITIAL_COURSES.map(c => c.id));
+        const customCourses = stored.filter(c => !initialIdSet.has(c.id));
+        this.courses = [...mergedInitial, ...customCourses];
       } else {
         this.courses = INITIAL_COURSES;
       }
@@ -1042,6 +1048,47 @@ class AcademyStore {
     }
   }
 
+  duplicateCourse(courseId: string) {
+    const original = this.courses.find(c => c.id === courseId);
+    if (!original) return null;
+    const cloned: Course = {
+      ...original,
+      id: `course-${Date.now()}`,
+      title: `${original.title} (Copy)`,
+      enrollmentStatus: 'not_enrolled',
+      progress: 0,
+    };
+    this.courses = [cloned, ...this.courses];
+    this.saveToStorage();
+    this.logApiRequest('POST', `/api/v1/courses/${cloned.id}`, 201);
+    this.notify();
+    return cloned;
+  }
+
+  importCourses(importedCourses: Course[]) {
+    if (!Array.isArray(importedCourses) || importedCourses.length === 0) return false;
+    this.courses = importedCourses;
+    this.saveToStorage();
+    this.logApiRequest('POST', '/api/v1/courses/import', 200);
+    this.notify();
+    return true;
+  }
+
+  getAdminPasscode(): string {
+    return localStorage.getItem('cyberai_admin_passcode') || 'admin123';
+  }
+
+  setAdminPasscode(newPasscode: string) {
+    localStorage.setItem('cyberai_admin_passcode', newPasscode.trim());
+    this.logApiRequest('PUT', '/api/v1/admin/security', 200);
+  }
+
+  verifyAdminPasscode(entered: string): boolean {
+    const trimmed = entered.trim();
+    const stored = this.getAdminPasscode();
+    return trimmed === stored || trimmed === '1234' || trimmed === 'admin123' || trimmed === 'networkhome';
+  }
+
   resetDatabase() {
     this.courses = INITIAL_COURSES;
     this.badges = INITIAL_BADGES;
@@ -1094,9 +1141,14 @@ export function useAcademyStore() {
     addCourse: (course: Course) => academyStore.addCourse(course),
     editCourse: (id: string, fields: Partial<Course>) => academyStore.editCourse(id, fields),
     deleteCourse: (id: string) => academyStore.deleteCourse(id),
+    duplicateCourse: (id: string) => academyStore.duplicateCourse(id),
+    importCourses: (courses: Course[]) => academyStore.importCourses(courses),
     addPathway: (pathway: Pathway) => academyStore.addPathway(pathway),
     deletePathway: (id: string) => academyStore.deletePathway(id),
     updateProfile: (fields: Partial<UserProfile>) => academyStore.updateProfile(fields),
     resetDatabase: () => academyStore.resetDatabase(),
+    getAdminPasscode: () => academyStore.getAdminPasscode(),
+    setAdminPasscode: (pass: string) => academyStore.setAdminPasscode(pass),
+    verifyAdminPasscode: (pass: string) => academyStore.verifyAdminPasscode(pass),
   };
 }

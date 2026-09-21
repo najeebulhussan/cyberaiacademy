@@ -22,7 +22,9 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
   const [isAdminAuthOpen, setIsAdminAuthOpen] = useState(false);
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(() => {
+    return localStorage.getItem('cyberai_admin_session') === 'true' || sessionStorage.getItem('cyberai_admin_session') === 'true';
+  });
   const [isVerifierOpen, setIsVerifierOpen] = useState(false);
   const [activeTheme, setActiveTheme] = useState<'theme2' | 'theme1'>('theme2');
 
@@ -31,7 +33,11 @@ export default function App() {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
       if (['explore', 'home2', 'programs', 'about', 'admissions', 'contact', 'learning', 'player', 'tutor', 'badges', 'admin'].includes(hash)) {
-        setActiveTab(hash as any);
+        if (hash === 'admin' && !isAdminAuthenticated) {
+          setIsAdminAuthOpen(true);
+        } else {
+          setActiveTab(hash as any);
+        }
       } else if (!hash) {
         setActiveTab('home2');
       }
@@ -41,7 +47,7 @@ export default function App() {
     handleHashChange(); // Run once on init
 
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [isAdminAuthenticated]);
 
   const handleSetTab = (tab: 'explore' | 'home2' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => {
     if (tab === 'admin' && !isAdminAuthenticated) {
@@ -51,6 +57,14 @@ export default function App() {
     setActiveTab(tab);
     window.location.hash = tab;
     setMobileMenuOpen(false);
+  };
+
+  const handleAdminLogout = () => {
+    localStorage.removeItem('cyberai_admin_session');
+    sessionStorage.removeItem('cyberai_admin_session');
+    setIsAdminAuthenticated(false);
+    setActiveTab('home2');
+    window.location.hash = 'home2';
   };
 
   return (
@@ -69,7 +83,36 @@ export default function App() {
           </div>
         </div>
         
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          {/* Admin Login / Online Status Indicator */}
+          {isAdminAuthenticated ? (
+            <div className="flex items-center gap-1 bg-emerald-500/20 border border-emerald-400/40 px-2 py-0.5 rounded-lg text-[11px] font-bold text-emerald-300">
+              <button 
+                onClick={() => handleSetTab('admin')} 
+                className="hover:underline flex items-center gap-1 cursor-pointer"
+                title="Go to Administrator Console"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Admin Console
+              </button>
+              <span className="text-white/30">|</span>
+              <button 
+                onClick={handleAdminLogout} 
+                className="text-red-300 hover:text-white text-[10px] cursor-pointer"
+                title="Log out from admin"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button 
+              onClick={() => setIsAdminAuthOpen(true)}
+              className="bg-white/10 hover:bg-white/20 text-white px-2 py-1 rounded text-[11px] font-bold transition-all flex items-center gap-1 cursor-pointer border border-white/20"
+              title="Administrator Login"
+            >
+              <Lock className="w-3 h-3 text-cyan-300" /> Admin Login
+            </button>
+          )}
+
           <button 
             onClick={() => setActiveTheme(activeTheme === 'theme2' ? 'theme1' : 'theme2')}
             className="bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded text-[11px] font-mono transition-all flex items-center gap-1 cursor-pointer border border-white/20"
@@ -81,7 +124,7 @@ export default function App() {
             onClick={() => setIsAdmissionOpen(true)}
             className="bg-[#007A87] hover:bg-[#005073] text-white px-3 py-1 rounded text-[11px] font-bold transition-all shadow-sm flex items-center gap-1 cursor-pointer"
           >
-            🎓 Admissions Open - Apply Now
+            🎓 Admissions Open
           </button>
         </div>
       </div>
