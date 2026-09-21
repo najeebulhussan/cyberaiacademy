@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Course, useAcademyStore } from '@/services/academyState';
-import { Search, Filter, BookOpen, Clock, ShieldCheck, Cpu, Award, X, CheckCircle2, ChevronRight, Server, Shield, Cloud, Terminal, Code, Globe, MapPin, Sparkles } from 'lucide-react';
+import { Search, Filter, BookOpen, Clock, ShieldCheck, Cpu, Award, X, CheckCircle2, ChevronRight, Server, Shield, Cloud, Terminal, Code, Globe, MapPin, Sparkles, Plus, Edit2, Wand2 } from 'lucide-react';
 import AdmissionModal from '@/components/AdmissionModal';
+import CourseCreatorModal from '@/components/CourseCreatorModal';
 
 interface CourseCatalogViewProps {
   onNavigateToTab: (tab: 'explore' | 'programs' | 'about' | 'admissions' | 'contact' | 'learning' | 'player' | 'tutor' | 'badges' | 'admin') => void;
@@ -17,6 +18,8 @@ export default function CourseCatalogView({ onNavigateToTab, initialCategory = '
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [isAdmissionModalOpen, setIsAdmissionModalOpen] = useState(false);
   const [admissionCourseName, setAdmissionCourseName] = useState('');
+  const [isCreatorModalOpen, setIsCreatorModalOpen] = useState(false);
+  const [courseToEdit, setCourseToEdit] = useState<Course | null>(null);
 
   const categories = [
     { id: 'All', label: 'All Programs', icon: BookOpen },
@@ -70,22 +73,34 @@ export default function CourseCatalogView({ onNavigateToTab, initialCategory = '
         <div className="particle w-4 h-4 bg-white/20" style={{ top: '15%', left: '10%' }} />
         <div className="particle w-2 h-2 bg-white/30" style={{ top: '70%', right: '15%' }} />
 
-        <div className="max-w-3xl space-y-3 relative z-10 text-left">
-          <div className="flex flex-wrap gap-2 items-center">
-            <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/10 border border-white/20 text-accentCyan inline-block">
-              ACADEMIC PROGRAMS & CERTIFICATIONS
-            </span>
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 inline-flex items-center gap-1.5">
-              <Globe className="w-3.5 h-3.5" /> Available Online & In-Person
-            </span>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10 text-left">
+          <div className="max-w-3xl space-y-3">
+            <div className="flex flex-wrap gap-2 items-center">
+              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/10 border border-white/20 text-accentCyan inline-block">
+                ACADEMIC PROGRAMS & CERTIFICATIONS
+              </span>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 inline-flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5" /> Available Online & In-Person
+              </span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight">
+              Explore All Professional Courses
+            </h1>
+            <p className="text-slate-200/90 text-xs sm:text-sm leading-relaxed">
+              Every program is available <strong>100% Online with 24/7 AI Cloud Sandboxes</strong> worldwide and <strong>In-Person with Hands-on Physical Cisco 4331 Router Racks</strong> at our Multan campus (311-B Bosan Road).
+            </p>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight">
-            Explore All Professional Courses
-          </h1>
-          <p className="text-slate-200/90 text-xs sm:text-sm leading-relaxed">
-            Every program is available <strong>100% Online with 24/7 AI Cloud Sandboxes</strong> worldwide and <strong>In-Person with Hands-on Physical Cisco 4331 Router Racks</strong> at our Multan campus (311-B Bosan Road).
-          </p>
+          <div className="shrink-0">
+            <button
+              onClick={() => { setCourseToEdit(null); setIsCreatorModalOpen(true); }}
+              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-accentCyan to-[#007A87] hover:from-cyan-400 hover:to-[#005073] text-slate-950 font-bold text-xs shadow-xl flex items-center gap-2 cursor-pointer transition-all hover:scale-105"
+            >
+              <Wand2 className="w-4 h-4 text-slate-950" />
+              <span>+ Create New Course</span>
+            </button>
+          </div>
         </div>
 
         {/* SEARCH & FILTER BAR */}
@@ -139,7 +154,7 @@ export default function CourseCatalogView({ onNavigateToTab, initialCategory = '
       </div>
 
       {/* RESULTS COUNT & ACTIVE FILTER CHIPS */}
-      <div className="flex items-center justify-between text-xs text-slate-600 px-2">
+      <div className="flex flex-wrap items-center justify-between gap-4 text-xs text-slate-600 px-2">
         <div className="flex items-center gap-3">
           <span className="font-semibold">
             Showing <span className="font-bold text-[#002D62]">{filteredCourses.length}</span> Programs
@@ -148,14 +163,25 @@ export default function CourseCatalogView({ onNavigateToTab, initialCategory = '
             <Sparkles className="w-3 h-3 text-blue-600" /> All Available Online & In-Person
           </span>
         </div>
-        {searchQuery && (
-          <button 
-            onClick={() => setSearchQuery('')}
-            className="text-xs text-[#007A87] hover:underline font-semibold flex items-center gap-1 cursor-pointer"
+        
+        <div className="flex items-center gap-3">
+          {searchQuery && (
+            <button 
+              onClick={() => setSearchQuery('')}
+              className="text-xs text-[#007A87] hover:underline font-semibold flex items-center gap-1 cursor-pointer"
+            >
+              <X className="w-3.5 h-3.5" /> Clear search filter
+            </button>
+          )}
+
+          <button
+            onClick={() => { setCourseToEdit(null); setIsCreatorModalOpen(true); }}
+            className="px-3.5 py-1.5 rounded-xl bg-[#002D62] hover:bg-[#001D42] text-white font-bold text-xs flex items-center gap-1.5 shadow-sm cursor-pointer transition-all hover:scale-105"
           >
-            <X className="w-3.5 h-3.5" /> Clear search filter
+            <Plus className="w-3.5 h-3.5 text-cyan-300" />
+            <span>Create Course</span>
           </button>
-        )}
+        </div>
       </div>
 
       {/* COURSES GRID */}
@@ -202,6 +228,19 @@ export default function CourseCatalogView({ onNavigateToTab, initialCategory = '
                       <Award className="w-3 h-3 text-amber-400" />
                       <span>{course.badgeName || 'W3C Open Badge'}</span>
                     </span>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCourseToEdit(course);
+                        setIsCreatorModalOpen(true);
+                      }}
+                      className="p-1 rounded-md bg-white/20 hover:bg-white text-white hover:text-slate-900 transition-all backdrop-blur-md flex items-center gap-1 px-2 text-[10px] font-bold"
+                      title="Edit Course in Studio"
+                    >
+                      <Edit2 className="w-3 h-3" />
+                      <span>Edit</span>
+                    </button>
                   </div>
                 </div>
 
@@ -366,6 +405,22 @@ export default function CourseCatalogView({ onNavigateToTab, initialCategory = '
               </button>
             </div>
 
+            {/* QUICK EDIT LINK */}
+            <div className="pt-1 flex items-center justify-center border-t border-slate-100">
+              <button
+                onClick={() => {
+                  const c = selectedCourse;
+                  setSelectedCourse(null);
+                  setCourseToEdit(c);
+                  setIsCreatorModalOpen(true);
+                }}
+                className="text-xs text-slate-500 hover:text-[#007A87] font-semibold flex items-center gap-1.5 cursor-pointer py-1 transition-colors"
+              >
+                <Edit2 className="w-3.5 h-3.5" />
+                <span>Customize or edit this course in Course Studio</span>
+              </button>
+            </div>
+
           </div>
         </div>
       )}
@@ -375,6 +430,16 @@ export default function CourseCatalogView({ onNavigateToTab, initialCategory = '
         isOpen={isAdmissionModalOpen} 
         onClose={() => setIsAdmissionModalOpen(false)} 
         defaultCourse={admissionCourseName}
+      />
+
+      {/* ADVANCED COURSE CREATOR & STUDIO MODAL */}
+      <CourseCreatorModal
+        isOpen={isCreatorModalOpen}
+        onClose={() => {
+          setIsCreatorModalOpen(false);
+          setCourseToEdit(null);
+        }}
+        courseToEdit={courseToEdit}
       />
 
     </div>

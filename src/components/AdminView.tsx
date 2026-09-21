@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { useAcademyStore, Course, Pathway, StudentRosterItem, IssuedCertificate } from '@/services/academyState';
 import { aiService } from '@/services/aiService';
+import CourseCreatorModal from '@/components/CourseCreatorModal';
 import { 
   Settings, Shield, Plus, Edit2, Trash2, Copy, Database, Terminal, RefreshCw, 
   CheckCircle, Info, Search, Image as ImageIcon, Upload, Download, Globe, Lock, 
@@ -84,6 +85,10 @@ export default function AdminView({ onLogout, onNavigateToTab }: AdminViewProps)
   const [filterCategory, setFilterCategory] = useState<string>('All');
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const [galleryCategoryFilter, setGalleryCategoryFilter] = useState('All');
+
+  // --- Advanced Course Creator Studio State ---
+  const [isCreatorModalOpen, setIsCreatorModalOpen] = useState(false);
+  const [creatorCourseToEdit, setCreatorCourseToEdit] = useState<Course | null>(null);
 
   // --- AI Course Architect State ---
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
@@ -738,13 +743,24 @@ export default function AdminView({ onLogout, onNavigateToTab }: AdminViewProps)
                 </p>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCreatorCourseToEdit(null);
+                    setIsCreatorModalOpen(true);
+                  }}
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#007A87] to-emerald-600 hover:from-[#005073] hover:to-emerald-700 text-white text-xs font-extrabold transition-all flex items-center gap-1.5 shadow-md cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4 text-cyan-300" />
+                  <span>✨ Course Creator Studio (AI & Blueprints)</span>
+                </button>
                 <button
                   type="button"
                   onClick={() => setIsAiModalOpen(true)}
                   className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-extrabold transition-all flex items-center gap-1.5 shadow-md cursor-pointer font-mono"
                 >
-                  <Wand2 className="w-4 h-4" /> AI Generate
+                  <Wand2 className="w-4 h-4" /> AI Auto-Fill
                 </button>
                 {editingCourseId && (
                   <button
@@ -1045,7 +1061,17 @@ export default function AdminView({ onLogout, onNavigateToTab }: AdminViewProps)
                         onClick={() => handleEditClick(c)}
                         className="flex-1 py-1.5 rounded-lg bg-slate-100 hover:bg-[#002D62] hover:text-white text-slate-700 text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer"
                       >
-                        <Edit2 className="w-3.5 h-3.5" /> Edit
+                        <Edit2 className="w-3.5 h-3.5" /> Quick Edit
+                      </button>
+                      <button
+                        onClick={() => {
+                          setCreatorCourseToEdit(c);
+                          setIsCreatorModalOpen(true);
+                        }}
+                        className="py-1.5 px-2.5 rounded-lg bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-800 text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer"
+                        title="Open in Advanced Course Creator Studio"
+                      >
+                        <Wand2 className="w-3.5 h-3.5 text-emerald-600 group-hover:text-white" /> Studio
                       </button>
                       <button
                         onClick={() => handleDuplicateCourse(c.id)}
@@ -2067,6 +2093,16 @@ export default function AdminView({ onLogout, onNavigateToTab }: AdminViewProps)
           </div>
         </div>
       )}
+
+      {/* ADVANCED COURSE CREATOR & STUDIO MODAL */}
+      <CourseCreatorModal
+        isOpen={isCreatorModalOpen}
+        onClose={() => {
+          setIsCreatorModalOpen(false);
+          setCreatorCourseToEdit(null);
+        }}
+        courseToEdit={creatorCourseToEdit}
+      />
 
     </div>
   );

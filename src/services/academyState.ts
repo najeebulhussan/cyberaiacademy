@@ -17,6 +17,10 @@ export interface Course {
   imageUrl: string;
   syllabusOutline: string[];
   deliveryMode?: 'Online & On-Campus' | 'Online' | 'On-Campus';
+  tuitionFee?: string;
+  isFeatured?: boolean;
+  status?: 'published' | 'draft';
+  prerequisites?: string[];
 }
 
 export interface Badge {
