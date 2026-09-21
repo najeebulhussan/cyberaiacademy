@@ -51,6 +51,36 @@ export interface Pathway {
   longDesc: string;
 }
 
+export interface StudentRosterItem {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  rollNumber: string;
+  enrolledCourseTitle: string;
+  progress: number;
+  attendancePercent: number;
+  labScore: number;
+  status: 'Active' | 'Graduated' | 'On Leave';
+  enrollmentDate: string;
+  certificateId?: string;
+}
+
+export interface IssuedCertificate {
+  id: string; // e.g. NHIIT-CCNA-2026-8841
+  studentName: string;
+  courseTitle: string;
+  courseCategory: string;
+  issueDate: string;
+  issuer: string;
+  directorName: string;
+  instructorName: string;
+  grade: 'Honors' | 'Distinction' | 'Pass';
+  score: number;
+  template: 'netacad-gold' | 'executive-blue' | 'cyber-dark';
+  verificationHash: string;
+}
+
 const INITIAL_COURSES: Course[] = [
   // --- NETWORKING AREA ---
   {
@@ -808,12 +838,115 @@ const INITIAL_PROFILE: UserProfile = {
   certificatesCount: 1,
 };
 
+const INITIAL_STUDENTS: StudentRosterItem[] = [
+  {
+    id: 'std-101',
+    name: 'Muhammad Ali Raza',
+    email: 'ali.raza@networkhome.edu.pk',
+    phone: '+92 300 8712345',
+    rollNumber: 'NH-2026-CS-041',
+    enrolledCourseTitle: 'Cisco Certified Network Associate (CCNA 200-301)',
+    progress: 100,
+    attendancePercent: 96,
+    labScore: 98,
+    status: 'Graduated',
+    enrollmentDate: 'Jan 15, 2026',
+    certificateId: 'NHIIT-CCNA-2026-8841'
+  },
+  {
+    id: 'std-102',
+    name: 'Fatima Noor',
+    email: 'fatima.noor@networkhome.edu.pk',
+    phone: '+92 301 5567890',
+    rollNumber: 'NH-2026-CY-012',
+    enrolledCourseTitle: 'Cisco CyberOps Associate & SOC Analyst',
+    progress: 85,
+    attendancePercent: 92,
+    labScore: 94,
+    status: 'Active',
+    enrollmentDate: 'Feb 01, 2026',
+  },
+  {
+    id: 'std-103',
+    name: 'Usman Tariq',
+    email: 'usman.tariq@networkhome.edu.pk',
+    phone: '+92 333 4455667',
+    rollNumber: 'NH-2026-NT-089',
+    enrolledCourseTitle: 'Network Automation with Python & Ansible',
+    progress: 60,
+    attendancePercent: 88,
+    labScore: 89,
+    status: 'Active',
+    enrollmentDate: 'Feb 10, 2026',
+  },
+  {
+    id: 'std-104',
+    name: 'Zainab Ahmed',
+    email: 'zainab.ahmed@networkhome.edu.pk',
+    phone: '+92 321 9988776',
+    rollNumber: 'NH-2026-EH-005',
+    enrolledCourseTitle: 'Certified Ethical Hacker (CEH v12)',
+    progress: 100,
+    attendancePercent: 98,
+    labScore: 96,
+    status: 'Graduated',
+    enrollmentDate: 'Jan 10, 2026',
+    certificateId: 'NHIIT-CEH-2026-9214'
+  },
+  {
+    id: 'std-105',
+    name: 'Hamza Bilal',
+    email: 'hamza.bilal@networkhome.edu.pk',
+    phone: '+92 345 1122334',
+    rollNumber: 'NH-2026-CL-033',
+    enrolledCourseTitle: 'AWS Certified Solutions Architect (SAA-C03)',
+    progress: 40,
+    attendancePercent: 84,
+    labScore: 82,
+    status: 'Active',
+    enrollmentDate: 'Mar 01, 2026',
+  }
+];
+
+const INITIAL_CERTIFICATES: IssuedCertificate[] = [
+  {
+    id: 'NHIIT-CCNA-2026-8841',
+    studentName: 'Muhammad Ali Raza',
+    courseTitle: 'Cisco Certified Network Associate (CCNA 200-301)',
+    courseCategory: 'Networking',
+    issueDate: 'August 2026',
+    issuer: 'Network Home Institute of Information Technology',
+    directorName: 'Engr. Najeeb Ul Hussan',
+    instructorName: 'Lead NetAcad Instructor',
+    grade: 'Distinction',
+    score: 98,
+    template: 'netacad-gold',
+    verificationHash: '0x8f4b7a1239c0e451b689a7f34e2c019d8841ae01'
+  },
+  {
+    id: 'NHIIT-CEH-2026-9214',
+    studentName: 'Zainab Ahmed',
+    courseTitle: 'Certified Ethical Hacker (CEH v12)',
+    courseCategory: 'Cybersecurity',
+    issueDate: 'August 2026',
+    issuer: 'Network Home Institute of Information Technology',
+    directorName: 'Engr. Najeeb Ul Hussan',
+    instructorName: 'Lead Cyber Security Specialist',
+    grade: 'Honors',
+    score: 96,
+    template: 'cyber-dark',
+    verificationHash: '0x3c7e91a054d8b2f917c30a84e61d49f09214bb52'
+  }
+];
+
 // Global Store with LocalStorage Persistence & Live API Logging
 class AcademyStore {
   private courses: Course[] = [];
   private badges: Badge[] = [];
   private profile: UserProfile = INITIAL_PROFILE;
   private pathways: Pathway[] = [];
+  private students: StudentRosterItem[] = [];
+  private certificates: IssuedCertificate[] = [];
   private chatLogs: { sender: 'user' | 'mentor'; text: string; time: string }[] = [
     { sender: 'mentor', text: 'Hello Alex! I am your CyberAI Mentor. How can I help you master your cybersecurity or automation studies today?', time: '20:52' },
   ];
@@ -861,6 +994,14 @@ class AcademyStore {
       this.pathways = localStorage.getItem('netacad_pathways') 
         ? JSON.parse(localStorage.getItem('netacad_pathways')!) 
         : INITIAL_PATHWAYS;
+
+      this.students = localStorage.getItem('netacad_students')
+        ? JSON.parse(localStorage.getItem('netacad_students')!)
+        : INITIAL_STUDENTS;
+
+      this.certificates = localStorage.getItem('netacad_certificates')
+        ? JSON.parse(localStorage.getItem('netacad_certificates')!)
+        : INITIAL_CERTIFICATES;
         
       this.logApiRequest('GET', '/api/v1/init', 200);
     } catch (e) {
@@ -868,6 +1009,8 @@ class AcademyStore {
       this.badges = INITIAL_BADGES;
       this.profile = INITIAL_PROFILE;
       this.pathways = INITIAL_PATHWAYS;
+      this.students = INITIAL_STUDENTS;
+      this.certificates = INITIAL_CERTIFICATES;
     }
   }
 
@@ -877,6 +1020,8 @@ class AcademyStore {
       localStorage.setItem('netacad_badges', JSON.stringify(this.badges));
       localStorage.setItem('netacad_profile', JSON.stringify(this.profile));
       localStorage.setItem('netacad_pathways', JSON.stringify(this.pathways));
+      localStorage.setItem('netacad_students', JSON.stringify(this.students));
+      localStorage.setItem('netacad_certificates', JSON.stringify(this.certificates));
     } catch (e) {
       console.error("Storage save failed:", e);
     }
@@ -1089,11 +1234,79 @@ class AcademyStore {
     return trimmed === stored || trimmed === '1234' || trimmed === 'admin123' || trimmed === 'networkhome';
   }
 
+  // --- STUDENT ROSTER & CERTIFICATE ACTIONS ---
+  getStudents() {
+    this.logApiRequest('GET', '/api/v1/students', 200);
+    return this.students;
+  }
+
+  addStudent(newStudent: StudentRosterItem) {
+    this.students = [newStudent, ...this.students];
+    this.saveToStorage();
+    this.logApiRequest('POST', `/api/v1/students/${newStudent.id}`, 201);
+    this.notify();
+  }
+
+  updateStudent(studentId: string, fields: Partial<StudentRosterItem>) {
+    this.students = this.students.map(s => s.id === studentId ? { ...s, ...fields } : s);
+    this.saveToStorage();
+    this.logApiRequest('PUT', `/api/v1/students/${studentId}`, 200);
+    this.notify();
+  }
+
+  deleteStudent(studentId: string) {
+    this.students = this.students.filter(s => s.id !== studentId);
+    this.saveToStorage();
+    this.logApiRequest('DELETE', `/api/v1/students/${studentId}`, 200);
+    this.notify();
+  }
+
+  getCertificates() {
+    this.logApiRequest('GET', '/api/v1/certificates', 200);
+    return this.certificates;
+  }
+
+  issueCertificate(newCert: IssuedCertificate) {
+    this.certificates = [newCert, ...this.certificates.filter(c => c.id !== newCert.id)];
+    // If matching student, mark as graduated with certificateId
+    this.students = this.students.map(s => {
+      if (s.name.toLowerCase() === newCert.studentName.toLowerCase() || s.certificateId === newCert.id) {
+        return { ...s, certificateId: newCert.id, status: 'Graduated', progress: 100 };
+      }
+      return s;
+    });
+    this.saveToStorage();
+    this.logApiRequest('POST', `/api/v1/certificates/${newCert.id}`, 201);
+    this.notify();
+    return newCert;
+  }
+
+  revokeCertificate(certId: string) {
+    this.certificates = this.certificates.filter(c => c.id !== certId);
+    this.students = this.students.map(s => s.certificateId === certId ? { ...s, certificateId: undefined, status: 'Active' } : s);
+    this.saveToStorage();
+    this.logApiRequest('DELETE', `/api/v1/certificates/${certId}`, 200);
+    this.notify();
+  }
+
+  verifyCertificate(certId: string): IssuedCertificate | null {
+    const q = certId.trim().toUpperCase();
+    const found = this.certificates.find(c => c.id.toUpperCase() === q);
+    if (found) {
+      this.logApiRequest('GET', `/api/v1/certificates/verify/${certId}`, 200);
+      return found;
+    }
+    this.logApiRequest('GET', `/api/v1/certificates/verify/${certId}`, 404);
+    return null;
+  }
+
   resetDatabase() {
     this.courses = INITIAL_COURSES;
     this.badges = INITIAL_BADGES;
     this.profile = INITIAL_PROFILE;
     this.pathways = INITIAL_PATHWAYS;
+    this.students = INITIAL_STUDENTS;
+    this.certificates = INITIAL_CERTIFICATES;
     this.saveToStorage();
     this.logApiRequest('POST', '/api/v1/db/reset', 200);
     this.notify();
@@ -1107,6 +1320,8 @@ export function useAcademyStore() {
   const [badges, setBadges] = useState<Badge[]>(academyStore.getBadges());
   const [profile, setProfile] = useState<UserProfile>(academyStore.getProfile());
   const [pathways, setPathways] = useState<Pathway[]>(academyStore.getPathways());
+  const [students, setStudents] = useState<StudentRosterItem[]>(academyStore.getStudents());
+  const [certificates, setCertificates] = useState<IssuedCertificate[]>(academyStore.getCertificates());
   const [chatLogs, setChatLogs] = useState(academyStore.getChatLogs());
   const [apiLogs, setApiLogs] = useState(academyStore.apiLogs);
 
@@ -1116,6 +1331,8 @@ export function useAcademyStore() {
       setBadges(academyStore.getBadges());
       setProfile(academyStore.getProfile());
       setPathways(academyStore.getPathways());
+      setStudents(academyStore.getStudents());
+      setCertificates(academyStore.getCertificates());
       setChatLogs(academyStore.getChatLogs());
       setApiLogs([...academyStore.apiLogs]);
     });
@@ -1129,6 +1346,8 @@ export function useAcademyStore() {
     badges,
     profile,
     pathways,
+    students,
+    certificates,
     chatLogs,
     apiLogs,
     enrollInCourse: (id: string) => academyStore.enrollInCourse(id),
@@ -1137,7 +1356,7 @@ export function useAcademyStore() {
     sendChatMessage: (text: string) => academyStore.sendChatMessage(text),
     setTargetPathway: (name: string) => academyStore.setTargetPathway(name),
     
-    // Admin functions
+    // Admin & Advanced functions
     addCourse: (course: Course) => academyStore.addCourse(course),
     editCourse: (id: string, fields: Partial<Course>) => academyStore.editCourse(id, fields),
     deleteCourse: (id: string) => academyStore.deleteCourse(id),
@@ -1150,5 +1369,13 @@ export function useAcademyStore() {
     getAdminPasscode: () => academyStore.getAdminPasscode(),
     setAdminPasscode: (pass: string) => academyStore.setAdminPasscode(pass),
     verifyAdminPasscode: (pass: string) => academyStore.verifyAdminPasscode(pass),
+
+    // Students & Certificate management
+    addStudent: (s: StudentRosterItem) => academyStore.addStudent(s),
+    updateStudent: (id: string, fields: Partial<StudentRosterItem>) => academyStore.updateStudent(id, fields),
+    deleteStudent: (id: string) => academyStore.deleteStudent(id),
+    issueCertificate: (cert: IssuedCertificate) => academyStore.issueCertificate(cert),
+    revokeCertificate: (certId: string) => academyStore.revokeCertificate(certId),
+    verifyCertificate: (certId: string) => academyStore.verifyCertificate(certId),
   };
 }
