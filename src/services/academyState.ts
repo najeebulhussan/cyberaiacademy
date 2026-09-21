@@ -217,7 +217,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00A854',
     enrollmentStatus: 'completed',
     progress: 100,
-    imageUrl: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80',
+    imageUrl: 'https://www.netacad.com/p/ff9e491c-49be-4734-803e-a79e6e83dab1/81e0b761-d0e6-461b-8f3d-0d18d566275b/image.png?ut=1614279411709',
     syllabusOutline: [
       "Module 1: The Global Need for Cybersecurity Shielding",
       "Module 2: Attacker Tactics, Malware types, and Vulnerabilities",
@@ -239,7 +239,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#7F00FF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80',
+    imageUrl: 'https://www.netacad.com/p/ff9e491c-49be-4734-803e-a79e6e83dab1/81e0b761-d0e6-461b-8f3d-0d18d566275b/image.png?ut=1614279411709',
     syllabusOutline: [
       "Module 1: Cybersecurity Concepts & The Cybersecurity Cube",
       "Module 2: Malware threats, Trojan Vectors, and Countermeasures",
@@ -264,7 +264,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop&q=80',
+    imageUrl: 'https://www.netacad.com/p/ff9e491c-49be-4734-803e-a79e6e83dab1/81e0b761-d0e6-461b-8f3d-0d18d566275b/image.png?ut=1614279411709',
     syllabusOutline: [
       "Module 1: CIA Triad & Core Security Principles",
       "Module 2: Network threats, DDoS Vectors, and Spoofing Attacks",
@@ -313,7 +313,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00FF87',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=800&auto=format&fit=crop&q=80',
+    imageUrl: 'https://www.netacad.com/p/ff9e491c-49be-4734-803e-a79e6e83dab1/81e0b761-d0e6-461b-8f3d-0d18d566275b/image.png?ut=1614279411709',
     syllabusOutline: [
       "Module 1: Defense-in-Depth network designs",
       "Module 2: Hardening Switch configurations & VLAN safety",
