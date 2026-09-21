@@ -8,24 +8,28 @@ export default function AdmissionsView() {
 
   const faqs = [
     {
-      q: "How do I apply for physical batches at the Multan campus?",
-      a: "You can apply online using our Admissions Inquiry form or visit our campus directly at 311-B Bosan Road, Multan. Admission counseling is available Monday to Saturday from 9:00 AM to 7:00 PM."
+      q: "Are courses available both Online and In-Person?",
+      a: "Yes! Every single program and certification track is available in two formats: (1) In-Person physical classroom and hardware labs at 311-B Bosan Road Multan, and (2) 100% Live Online Interactive classes with 24/7 AI-guided cloud sandboxes from anywhere worldwide."
+    },
+    {
+      q: "How do I apply for physical or online batches?",
+      a: "You can apply directly using our Admissions Inquiry form online or visit our Multan campus at 311-B Bosan Road. Admission counseling and batch registrations are open Monday to Saturday from 9:00 AM to 7:00 PM."
     },
     {
       q: "What physical lab hardware will I get access to?",
-      a: "Students get direct hands-on access to physical Cisco 4331 ISR Routers, Catalyst 2960-X Switches, Cisco ASA Firewalls, RHEL 9 Linux server racks, and high-performance NVIDIA GPU workstations."
+      a: "On-campus students get direct hands-on access to physical Cisco 4331 ISR Routers, Catalyst 2960-X Switches, Cisco ASA Firewalls, RHEL 9 Linux server racks, and high-performance workstations."
     },
     {
       q: "Are installment plans available for course fees?",
-      a: "Yes! We offer flexible fee payment plans (Monthly Installments) for CCNA, CCNP, RHCSA, AWS, and CEH certification tracks."
+      a: "Yes! We offer flexible fee payment plans (Monthly Installments in PKR) for CCNA, CCNP, RHCSA, AWS, CEH, and DevOps certification tracks."
     },
     {
       q: "Do you offer official Cisco NetAcad W3C digital open badges?",
       a: "Yes. As an official Cisco Networking Academy partner, students who complete their modules receive official Cisco W3C digital open badges verifiable on Credly and our public verifier portal."
     },
     {
-      q: "What are the batch timings for working professionals?",
-      a: "We offer Morning (9:00 AM - 12:00 PM), Afternoon (2:00 PM - 5:00 PM), Evening (5:00 PM - 8:00 PM), and Weekend Special (Saturday & Sunday) batches."
+      q: "What are the batch timings for working professionals and students?",
+      a: "We offer Morning (9:00 AM - 12:00 PM), Afternoon (2:00 PM - 5:00 PM), Evening (5:00 PM - 8:00 PM), and Weekend Special (Saturday & Sunday) batches for both online and physical sessions."
     }
   ];
 
@@ -38,14 +42,20 @@ export default function AdmissionsView() {
         <div className="particle w-3 h-3 bg-white/15" style={{ top: '65%', right: '15%' }} />
 
         <div className="max-w-3xl space-y-3 relative z-10">
-          <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-white/10 border border-white/20 text-accentCyan inline-block">
-            MULTAN CAMPUS ADMISSIONS & BATCHES
-          </span>
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-white/10 border border-white/20 text-accentCyan inline-block">
+              ONLINE & ON-CAMPUS ADMISSIONS
+            </span>
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 inline-flex items-center gap-1.5">
+              <span>🌐 Online & 🏫 In-Person Available</span>
+            </span>
+          </div>
+
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight">
             Admissions Open — Fall & Spring Batches
           </h1>
           <p className="text-slate-200/90 text-xs sm:text-sm leading-relaxed">
-            Reserve your desk in South Punjab's top Cisco & IT lab environment. Limited seats available per physical batch to ensure 1-on-1 router rack time.
+            Join South Punjab's top Cisco & IT academy. Study <strong>In-Person</strong> with 1-on-1 router rack time at 311-B Bosan Road Multan or <strong>100% Live Online</strong> with 24/7 cloud sandbox access from anywhere in the world.
           </p>
 
           <div className="pt-2">
@@ -53,7 +63,7 @@ export default function AdmissionsView() {
               onClick={() => setIsModalOpen(true)}
               className="bg-[#007A87] hover:bg-[#005073] text-white px-7 py-3.5 rounded-xl font-bold text-xs shadow-lg inline-flex items-center gap-2 cursor-pointer transition-all hover:scale-105 border border-white/20"
             >
-              🎓 Apply for Admission Now
+              🎓 Apply for Online / In-Person Batch
             </button>
           </div>
         </div>

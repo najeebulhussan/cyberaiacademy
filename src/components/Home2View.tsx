@@ -50,6 +50,10 @@ export default function Home2View({ onNavigateToTab }: Home2ViewProps) {
                 <span>Cisco Academy Partner • Gulgasht Colony, Multan</span>
               </div>
 
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-bold font-mono shadow-sm">
+                <span>🌐 Online & 🏫 In-Person Classes</span>
+              </div>
+
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold font-mono shadow-sm">
                 <span>🔥 Admissions Open 2026</span>
               </div>
@@ -69,7 +73,7 @@ export default function Home2View({ onNavigateToTab }: Home2ViewProps) {
 
             {/* Sub-headline Description */}
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-xl font-sans">
-              South Punjab's premier institute for <strong>Cisco CCNA/CCNP, Red Hat RHCSA Linux, AWS Cloud, DevOps & Ethical Hacking</strong>. Train on physical Cisco 4331 router racks at 311-B Bosan Road Multan alongside 24/7 AI cloud sandboxes.
+              South Punjab's premier institute for <strong>Cisco CCNA/CCNP, Red Hat RHCSA Linux, AWS Cloud, DevOps & Ethical Hacking</strong>. Available <strong>100% Online worldwide</strong> and <strong>In-Person with physical Cisco 4331 router racks</strong> at 311-B Bosan Road, Gulgasht Colony, Multan.
             </p>
 
             {/* CTA Buttons */}

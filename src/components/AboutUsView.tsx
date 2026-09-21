@@ -52,7 +52,7 @@ export default function AboutUsView() {
           Why Students & Employers Choose NHIIT
         </h2>
 
-        <div className="grid sm:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <div className="space-y-2 p-5 rounded-2xl bg-slate-50/80 border border-slate-200/80">
             <div className="flex items-center gap-2 text-[#002D62] font-bold text-sm">
               <Server className="w-5 h-5 text-[#007A87]" />
@@ -75,11 +75,21 @@ export default function AboutUsView() {
 
           <div className="space-y-2 p-5 rounded-2xl bg-slate-50/80 border border-slate-200/80">
             <div className="flex items-center gap-2 text-[#002D62] font-bold text-sm">
-              <Users className="w-5 h-5 text-[#002D62]" />
-              <span>5,000+ Alumni Network</span>
+              <BookOpen className="w-5 h-5 text-blue-600" />
+              <span>Online & In-Person</span>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Over 5,000 certified graduates working in top telecom firms, SOC threat centers, and software houses worldwide.
+              All programs available 100% Online worldwide and In-Person at our state-of-the-art Multan campus.
+            </p>
+          </div>
+
+          <div className="space-y-2 p-5 rounded-2xl bg-slate-50/80 border border-slate-200/80">
+            <div className="flex items-center gap-2 text-[#002D62] font-bold text-sm">
+              <Users className="w-5 h-5 text-[#002D62]" />
+              <span>5,000+ Alumni</span>
+            </div>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Certified graduates working in top telecom firms, SOC threat centers, and global software houses.
             </p>
           </div>
         </div>

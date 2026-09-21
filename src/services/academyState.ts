@@ -16,6 +16,7 @@ export interface Course {
   progress: number; // 0 to 100
   imageUrl: string;
   syllabusOutline: string[];
+  deliveryMode?: 'Online & On-Campus' | 'Online' | 'On-Campus';
 }
 
 export interface Badge {
