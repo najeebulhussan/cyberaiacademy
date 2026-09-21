@@ -132,7 +132,7 @@ export default function AdminView() {
         badgeName: courseBadge || undefined,
         enrollmentStatus: 'not_enrolled',
         progress: 0,
-        imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80',
+        imageUrl: '/netacad-thumbnails/ccna-itn.png',
         syllabusOutline,
       };
       addCourse(newCourse);

@@ -66,7 +66,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'completed',
     progress: 100,
-    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/ccna-itn.png',
     syllabusOutline: [
       "Chapter 1: Networking Today & Global Connections",
       "Chapter 2: Basic Switch and End Device Configuration",
@@ -100,7 +100,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00FF87',
     enrollmentStatus: 'in_progress',
     progress: 45,
-    imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/ccna-srwe.png',
     syllabusOutline: [
       "Chapter 1: Basic Device Configuration & Port Settings",
       "Chapter 2: Switching Concepts & MAC Address Tables",
@@ -132,7 +132,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF9F00',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/ccna-ensa.png',
     syllabusOutline: [
       "Chapter 1: Single-Area OSPFv2 Concepts",
       "Chapter 2: Single-Area OSPFv2 Configuration",
@@ -163,7 +163,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'in_progress',
     progress: 30,
-    imageUrl: 'https://images.unsplash.com/photo-1520869562399-e772f342b00a?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/networking-essentials.png',
     syllabusOutline: [
       "Module 1: Communications in a Connected World",
       "Module 2: Network Components & Connections",
@@ -189,7 +189,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF007F',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/ccst-networking.png',
     syllabusOutline: [
       "Chapter 1: Standard OSI & TCP/IP Model layers",
       "Chapter 2: Physical Network Connections & Media",
@@ -217,7 +217,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00A854',
     enrollmentStatus: 'completed',
     progress: 100,
-    imageUrl: 'https://www.netacad.com/p/ff9e491c-49be-4734-803e-a79e6e83dab1/81e0b761-d0e6-461b-8f3d-0d18d566275b/image.png?ut=1614279411709',
+    imageUrl: '/netacad-thumbnails/intro-cyber.png',
     syllabusOutline: [
       "Module 1: The Global Need for Cybersecurity Shielding",
       "Module 2: Attacker Tactics, Malware types, and Vulnerabilities",
@@ -239,7 +239,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#7F00FF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://www.netacad.com/p/ff9e491c-49be-4734-803e-a79e6e83dab1/81e0b761-d0e6-461b-8f3d-0d18d566275b/image.png?ut=1614279411709',
+    imageUrl: '/netacad-thumbnails/cybersecurity-essentials.png',
     syllabusOutline: [
       "Module 1: Cybersecurity Concepts & The Cybersecurity Cube",
       "Module 2: Malware threats, Trojan Vectors, and Countermeasures",
@@ -264,7 +264,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://www.netacad.com/p/ff9e491c-49be-4734-803e-a79e6e83dab1/81e0b761-d0e6-461b-8f3d-0d18d566275b/image.png?ut=1614279411709',
+    imageUrl: '/netacad-thumbnails/endpoint-security.png',
     syllabusOutline: [
       "Module 1: CIA Triad & Core Security Principles",
       "Module 2: Network threats, DDoS Vectors, and Spoofing Attacks",
@@ -288,7 +288,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'in_progress',
     progress: 45,
-    imageUrl: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/cyberops.png',
     syllabusOutline: [
       "Module 1: Danger Threat actor tactics and malware classifications",
       "Module 2: Windows Operating System Security & Audit Logging",
@@ -313,7 +313,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00FF87',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://www.netacad.com/p/ff9e491c-49be-4734-803e-a79e6e83dab1/81e0b761-d0e6-461b-8f3d-0d18d566275b/image.png?ut=1614279411709',
+    imageUrl: '/netacad-thumbnails/network-defense.png',
     syllabusOutline: [
       "Module 1: Defense-in-Depth network designs",
       "Module 2: Hardening Switch configurations & VLAN safety",
@@ -340,7 +340,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF9F00',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/python-essentials-1.jpg',
     syllabusOutline: [
       "Chapter 1: Python environment installation and basics",
       "Chapter 2: Data types, Variables, Operators, and Console I/O",
@@ -361,7 +361,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#B24FFF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/python-essentials-2.jpg',
     syllabusOutline: [
       "Chapter 1: Modules, Packages, and PIP package manager",
       "Chapter 2: Advanced Strings, Tuples, Dictionaries, and Lists",
@@ -382,7 +382,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1579468118864-ddab3a7101e8?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/javascript-essentials.jpg',
     syllabusOutline: [
       "Module 1: JavaScript in the Browser & Execution Engines",
       "Module 2: Variables, Scopes, Constants, and Primitive types",
@@ -406,7 +406,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#7F00FF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/devnet.png',
     syllabusOutline: [
       "Module 1: Git Version Control and Collaboration workflows",
       "Module 2: REST APIs, HTTP protocols, headers, and status codes",
@@ -429,7 +429,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF9F00',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1618401471353-b98aedd04e11?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/network-automation.png',
     syllabusOutline: [
       "Module 1: Introduction to Network Programmability",
       "Module 2: Python Paramiko and Netmiko script routines",
@@ -454,7 +454,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00FF87',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/intro-iot.png',
     syllabusOutline: [
       "Module 1: What is IoT and Digital Transformation concepts",
       "Module 2: Hardware sensors, controllers (Arduino & Raspberry Pi)",
@@ -474,7 +474,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF007F',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/data-analytics.png',
     syllabusOutline: [
       "Module 1: Introduction to Data Analysis lifecycle",
       "Module 2: Working with data tables, columns, and CSV formats",
@@ -499,7 +499,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#7F00FF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/linux-essentials.jpg',
     syllabusOutline: [
       "Chapter 1: Linux Tux history and shell environment",
       "Chapter 2: Folder navigation commands (ls, cd, pwd)",
@@ -520,7 +520,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/linux-essentials.jpg',
     syllabusOutline: [
       "Chapter 1: Selecting a Linux distro & kernel versions",
       "Chapter 2: Bash Shell variables and CLI controls",
@@ -544,7 +544,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF9F00',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1588508065123-287b28e013da?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/it-essentials.jpg',
     syllabusOutline: [
       "Chapter 1: Hardware components (Motherboard, RAM, CPU, Storage)",
       "Chapter 2: System building & ESD anti-static safety",
@@ -569,7 +569,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#002D62',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/ccnp-enterprise.png',
     syllabusOutline: [
       "Module 1: Dual-Stack Architecture (IPv4 & IPv6 Core Routing)",
       "Module 2: Advanced Single & Multi-Area OSPFv3 Operations",
@@ -594,7 +594,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#CC0000',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1597852074816-d933c4d2b988?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/rhcsa-linux.png',
     syllabusOutline: [
       "Module 1: RHEL Installation & Command Line Shell Mastery",
       "Module 2: User & Group Management with Password Policies",
@@ -619,7 +619,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#FF9900',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/aws-cloud.png',
     syllabusOutline: [
       "Module 1: AWS Global Infrastructure & Cloud Architecture Principles",
       "Module 2: Identity & Access Management (IAM) Policies & Roles",
@@ -644,7 +644,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#00F2FE',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/cloud-devops.jpg',
     syllabusOutline: [
       "Module 1: Git Distributed Version Control & Feature Branch Workflows",
       "Module 2: Dockerfile Creation, Image Optimization & Container Networking",
@@ -669,7 +669,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#CC0000',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/cyber-threat-management.png',
     syllabusOutline: [
       "Module 1: FortiGate Architecture, Deployment Modes & System Settings",
       "Module 2: Firewall Security Policies, NAT & Port Forwarding",
@@ -694,7 +694,7 @@ const INITIAL_COURSES: Course[] = [
     badgeColor: '#7F00FF',
     enrollmentStatus: 'not_enrolled',
     progress: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80',
+    imageUrl: '/netacad-thumbnails/ethical-hacker.png',
     syllabusOutline: [
       "Module 1: Footprinting, OSINT Reconnaissance & Social Engineering",
       "Module 2: Nmap Network Scanning, Port Audits & OS Fingerprinting",
